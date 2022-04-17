@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "karuzela.app"
-               BlueprintName = "karuzela"
-               ReferencedContainer = "container:karuzela.xcodeproj">
+               BuildableName = "oddanie33.app"
+               BlueprintName = "oddanie33"
+               ReferencedContainer = "container:oddanie33.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "karuzelaTests.xctest"
-               BlueprintName = "karuzelaTests"
-               ReferencedContainer = "container:karuzela.xcodeproj">
+               BuildableName = "oddanie33Tests.xctest"
+               BlueprintName = "oddanie33Tests"
+               ReferencedContainer = "container:oddanie33.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "karuzela.app"
-            BlueprintName = "karuzela"
-            ReferencedContainer = "container:karuzela.xcodeproj">
+            BuildableName = "oddanie33.app"
+            BlueprintName = "oddanie33"
+            ReferencedContainer = "container:oddanie33.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "karuzela.app"
-            BlueprintName = "karuzela"
-            ReferencedContainer = "container:karuzela.xcodeproj">
+            BuildableName = "oddanie33.app"
+            BlueprintName = "oddanie33"
+            ReferencedContainer = "container:oddanie33.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
