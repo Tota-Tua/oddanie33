@@ -27,9 +27,10 @@ const MainCarousel = ({navigation}) => {
 
   return (
     <View style={styles.exampleContainer}>
-      <Text style={styles.title}>
+      {/*<Text style={styles.title}>
         {'Wybierz interesujące Cię przygotowanie'}
       </Text>
+      */}
       <Carousel
         ref={slider}
         data={carouselData}

@@ -1,23 +1,54 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  ApplicationProvider,
+  BottomNavigation,
+  BottomNavigationTab,
+  Icon,
+  IconRegistry,
+} from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import Entry from './components/Entry/Entry';
 import Grid from './components/Grid/Grid';
-import DayDetails from './components/DayDetails/DayDetails';
+// import DayDetails from './components/DayDetails/DayDetails';
 
-const Stack = createNativeStackNavigator();
+const {Navigator, Screen} = createBottomTabNavigator();
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Entry" component={Entry} />
-          <Stack.Screen name="Grid" component={Grid} />
-          <Stack.Screen name="DayDetails" component={DayDetails} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
-}
+const HomeIcon = props => <Icon {...props} name="home" />;
+
+const FavoriteIcon = props => <Icon {...props} name="heart" />;
+
+const ProfileIcon = props => <Icon {...props} name="person" />;
+
+const MyBottomNavigation = ({navigation, state}) => (
+  <BottomNavigation
+    selectedIndex={state.index}
+    onSelect={index => navigation.navigate(state.routeNames[index])}>
+    <BottomNavigationTab title="MAIN" icon={HomeIcon} />
+    <BottomNavigationTab title="FAVORITES" icon={FavoriteIcon} />
+    <BottomNavigationTab title="PROFILE" icon={ProfileIcon} />
+  </BottomNavigation>
+);
+
+const MyNavigationContainer = () => (
+  <NavigationContainer>
+    <Navigator tabBar={props => <MyBottomNavigation {...props} />}>
+      <Screen name="Main" component={Entry} />
+      <Screen name="Grid" component={Grid} />
+    </Navigator>
+  </NavigationContainer>
+);
+
+export default () => {
+  return (
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <MyNavigationContainer />
+      </ApplicationProvider>
+    </>
+  );
+};
