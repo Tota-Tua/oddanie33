@@ -13,14 +13,14 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import Entry from './components/Entry/Entry';
 import Grid from './components/Grid/Grid';
+import Favorites from './components/Favorites/Favorites';
+import Profile from './components/Profile/Profile';
 // import DayDetails from './components/DayDetails/DayDetails';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
 const HomeIcon = props => <Icon {...props} name="home" />;
-
 const FavoriteIcon = props => <Icon {...props} name="heart" />;
-
 const ProfileIcon = props => <Icon {...props} name="person" />;
 
 const MyBottomNavigation = ({navigation, state}) => (
@@ -37,6 +37,8 @@ const MyNavigationContainer = () => (
   <NavigationContainer>
     <Navigator tabBar={props => <MyBottomNavigation {...props} />}>
       <Screen name="Main" component={Entry} />
+      <Screen name="Favorites" component={Favorites} />
+      <Screen name="Profile" component={Profile} />
       <Screen name="Grid" component={Grid} />
     </Navigator>
   </NavigationContainer>
