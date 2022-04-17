@@ -14,7 +14,12 @@ export default class SliderEntry extends Component {
   };
 
   get image() {
-    const {data: {illustration}, parallax, parallaxProps, even} = this.props;
+    const {
+      data: {illustration},
+      parallax,
+      parallaxProps,
+      even,
+    } = this.props;
 
     return parallax ? (
       <ParallaxImage
@@ -31,24 +36,25 @@ export default class SliderEntry extends Component {
         {...parallaxProps}
       />
     ) : (
-      <Image
-        source={{uri: illustration}}
-        style={styles.image}
-      />
+      <Image source={{uri: illustration}} style={styles.image} />
     );
   }
 
   render() {
-    const {data: {title, subtitle}, even} = this.props;
+    const {
+      data: {title, subtitle},
+      even,
+    } = this.props;
 
     const uppercaseTitle = title ? (
       <Text
         style={[styles.title, even ? styles.titleEven : {}]}
-        numberOfLines={2}
-      >
+        numberOfLines={2}>
         {title.toUpperCase()}
       </Text>
-    ) : false;
+    ) : (
+      false
+    );
 
     return (
       <TouchableOpacity
@@ -56,16 +62,22 @@ export default class SliderEntry extends Component {
         style={styles.slideInnerContainer}
         onPress={() => this.props.navigation.navigate('Grid', {id: 4})}>
         <View style={styles.shadow} />
-          <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
+        <View
+          style={[
+            styles.imageContainer,
+            even ? styles.imageContainerEven : {},
+          ]}>
           {this.image}
-          <View style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]} />
+          <View
+            style={[styles.radiusMask, even ? styles.radiusMaskEven : {}]}
+          />
         </View>
-        <View style={[styles.textContainer, even ? styles.textContainerEven : {}]}>
+        <View
+          style={[styles.textContainer, even ? styles.textContainerEven : {}]}>
           {uppercaseTitle}
           <Text
             style={[styles.subtitle, even ? styles.subtitleEven : {}]}
-            numberOfLines={2}
-          >
+            numberOfLines={2}>
             {subtitle}
           </Text>
         </View>

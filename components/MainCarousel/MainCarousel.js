@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Text, View} from 'react-native';
+import {/*Text, */ View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import styles from './MainCarousel.styles';

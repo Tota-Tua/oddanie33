@@ -6,7 +6,9 @@ import styles from './Grid.styles';
 const Grid = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
-      <FlatList numColumns={3} data={sectionListData}
+      <FlatList
+        numColumns={3}
+        data={sectionListData}
         renderItem={({item}) => renderItem(item, navigation)}
         keyExtractor={item => item.id}
         ListHeaderComponent={renderHeader}
@@ -18,7 +20,11 @@ const Grid = ({navigation}) => {
 const renderItem = (item, navigation) => {
   return (
     <View style={styles.gridStyle}>
-      <Text style={styles.gridText} onPress={() => navigation.navigate('DayDetails', {id: item.id})}>{item.title}</Text>
+      <Text
+        style={styles.gridText}
+        onPress={() => navigation.navigate('DayDetails', {id: item.id})}>
+        {item.title}
+      </Text>
     </View>
   );
 };

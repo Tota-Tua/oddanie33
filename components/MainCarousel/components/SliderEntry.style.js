@@ -2,7 +2,8 @@ import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {colors} from '../MainCarousel.styles';
 
 const IS_IOS = Platform.OS === 'ios';
-const {width: viewportWidth/*, height: viewportHeight*/} = Dimensions.get('window');
+const {width: viewportWidth /*, height: viewportHeight*/} =
+  Dimensions.get('window');
 function wp(percentage) {
   const value = (percentage * viewportWidth) / 100;
   return Math.round(value);
