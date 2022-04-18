@@ -1,6 +1,7 @@
 import React from 'react';
-import {Button, Icon, List, ListItem} from '@ui-kitten/components';
-import {StyleSheet} from 'react-native';
+import {Button, List, ListItem, Text} from '@ui-kitten/components';
+import {Image, StyleSheet} from 'react-native';
+import images from '../../res/images/images';
 
 // genertate list data
 const DAYS_NO = 33;
@@ -12,16 +13,15 @@ const listData = new Array(DAYS_NO).fill().map((el, index) => {
   };
 });
 
+const imgStyle = {width: 100, height: 50, padding:0, margin:0};
 export default () => {
-  const renderItemAccessory = props => <Button size="tiny">GO</Button>;
-
-  const renderItemIcon = props => <Icon {...props} name="person" />;
-
+  const renderItemAccessory = props => <Button size="tiny">NOT ACTIVE</Button>;
+  const renderLeftPart = props => <Image resizeMode="contain" style={imgStyle} source={images.day} />;
   const renderItem = ({item, index}) => (
     <ListItem
-      title={`${item.title}`}
-      description={`${item.description}`}
-      accessoryLeft={renderItemIcon}
+      title={props => <Text {...props}>{item.title}</Text>}
+      description={props => <Text {...props}>{item.description}</Text>}
+      accessoryLeft={renderLeftPart}
       accessoryRight={renderItemAccessory}
     />
   );
