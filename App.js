@@ -12,7 +12,8 @@ import * as eva from '@eva-design/eva';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import Entry from './components/Entry/Entry';
-import Grid from './components/Grid/Grid';
+//import Grid from './components/Grid/Grid';
+import List from './components/List/List';
 import Favorites from './components/Favorites/Favorites';
 import Profile from './components/Profile/Profile';
 // import DayDetails from './components/DayDetails/DayDetails';
@@ -39,7 +40,7 @@ const MyNavigationContainer = () => (
       <Screen name="Main" component={Entry} />
       <Screen name="Favorites" component={Favorites} />
       <Screen name="Profile" component={Profile} />
-      <Screen name="Grid" component={Grid} />
+      <Screen name="List" component={List} />
     </Navigator>
   </NavigationContainer>
 );
