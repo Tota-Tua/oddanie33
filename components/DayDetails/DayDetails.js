@@ -4,7 +4,7 @@ import WebView from 'react-native-webview';
 const DayDetails = ({route: {params}}) => {
   // the intention is to prevent from navigation
   const injectedJSCode =
-    '["nav", "footer"].forEach(el => document.querySelector(el).remove());';
+    '["nav", "footer", ".nav"].forEach(el => document.querySelector(el).remove());';
   return (
     <WebView
       originWhitelist={[]}
