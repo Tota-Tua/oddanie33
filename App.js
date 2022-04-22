@@ -16,7 +16,7 @@ import Entry from './components/Entry/Entry';
 import List from './components/List/List';
 import Favorites from './components/Favorites/Favorites';
 import Profile from './components/Profile/Profile';
-// import DayDetails from './components/DayDetails/DayDetails';
+import DayDetails from './components/DayDetails/DayDetails';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -41,6 +41,7 @@ const MyNavigationContainer = () => (
       <Screen name="Favorites" component={Favorites} />
       <Screen name="Profile" component={Profile} />
       <Screen name="List" component={List} />
+      <Screen name="DayDetails" component={DayDetails} />
     </Navigator>
   </NavigationContainer>
 );
