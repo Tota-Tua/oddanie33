@@ -3,17 +3,6 @@ import {Icon, List, ListItem, Text} from '@ui-kitten/components';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import images from '../../res/images/images';
 
-function generateListData({title, subtitle}) {
-  const DAYS_NO = 33;
-  return new Array(DAYS_NO).fill().map((el, index) => {
-    return {
-      index: index + 1,
-      title: title,
-      description: subtitle,
-    };
-  });
-}
-
 function generateUrl(index, urlPattern) {
   return urlPattern.replace('${number}', index);
 }
@@ -27,7 +16,7 @@ export default ({navigation, route: {params}}) => {
       <Icon
         style={[props.style, styles.iconStyle]}
         name="heart"
-        fill="#FF0000"
+        /*fill="#FF0000"*/
       />
       //</TouchableOpacity>
     );
@@ -46,16 +35,15 @@ export default ({navigation, route: {params}}) => {
     );
   };
 
-  const sendData = params.id;
-  const renderItem = ({item}) => (
+  const renderItem = ({item, index}) => (
     <ListItem
       title={props => <Text {...props}>{item.title}</Text>}
       description={props => <Text {...props}>{item.description}</Text>}
-      accessoryLeft={props => renderLeftPart(props, item.index)}
+      accessoryLeft={props => renderLeftPart(props, index + 1)}
       accessoryRight={renderItemAccessory}
       onPress={() => {
         navigation.navigate('DayDetails', {
-          url: generateUrl(item.index, sendData.urlPattern),
+          url: generateUrl(index + 1, item.urlPattern),
         });
       }}
     />
@@ -64,7 +52,7 @@ export default ({navigation, route: {params}}) => {
   return (
     <List
       style={styles.container}
-      data={generateListData(sendData)}
+      data={params.data.daysInfo}
       renderItem={renderItem}
     />
   );
