@@ -37,7 +37,7 @@ export default ({navigation, route: {params}}) => {
 
   const renderItem = ({item, index}) => (
     <ListItem
-      title={props => <Text {...props}>{item.title}</Text>}
+      title={props => <Text {...props} numberOfLines={3} ellipsizeMode='tail'>{item.title}</Text>}
       description={props => <Text {...props}>{item.description}</Text>}
       accessoryLeft={props => renderLeftPart(props, index + 1)}
       accessoryRight={renderItemAccessory}
