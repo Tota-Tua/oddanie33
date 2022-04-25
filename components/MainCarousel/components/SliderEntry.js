@@ -45,7 +45,6 @@ export default class SliderEntry extends Component {
       data: {title, subtitle},
       even,
     } = this.props;
-
     const uppercaseTitle = title ? (
       <Text
         style={[styles.title, even ? styles.titleEven : {}]}
@@ -61,7 +60,7 @@ export default class SliderEntry extends Component {
         activeOpacity={1}
         style={styles.slideInnerContainer}
         onPress={() =>
-          this.props.navigation.navigate('List', {id: this.props.data})
+          this.props.navigation.navigate('List', {data: this.props.data})
         }>
         <View style={styles.shadow} />
         <View
