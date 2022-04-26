@@ -65,11 +65,11 @@ export default [
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     }, {
-      title: 'ŚWIAT ODDANY. ŚWIAT POŚWIĘCONY. ŚWIAT W NIEPOKALANYM SERCU MARYI.',
+      title: 'ŚWIAT ODDANY. ŚWIAT POŚWIĘCONY. ŚWIAT W NIEPOKALANYM SERCU MARYI',
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     }, {
-      title: 'POŚWIĘCENIE POLSKI NIEPOKALANEMU SERCU MARYI. NARÓD TOTUS TUUS.',
+      title: 'POŚWIĘCENIE POLSKI NIEPOKALANEMU SERCU MARYI. NARÓD TOTUS TUUS',
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     }, {
@@ -89,7 +89,7 @@ export default [
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     }, {
-      title: '„MARYJO, KTÓRA CAŁA JESTEŚ CZUŁOŚCIĄ BOGA DLA MNIE…” Bóg kocha przez Maryję.',
+      title: '„MARYJO, KTÓRA CAŁA JESTEŚ CZUŁOŚCIĄ BOGA DLA MNIE…” Bóg kocha przez Maryję',
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     }, {
@@ -137,7 +137,8 @@ export default [
       subtitle: '',
       urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     },
-  ]}, {
+    ]
+  }, {
     title: '33 dni dla młodych',
     subtitle: 'Treści stworzone pod kątem młodych',
     urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
@@ -185,58 +186,98 @@ export default [
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Uznając swoją słabość i grzeszność.',
+        title: 'Uznając swoją słabość i grzeszność',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Odnawiam i potwierdzam przymierze Chrztu Świętego.',
+        title: 'Odnawiam i potwierdzam przymierze Chrztu Świętego',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Wyrzekam się na zawsze grzechu, szatana i wszystkich jego dzieł.',
+        title: 'Wyrzekam się na zawsze grzechu, szatana i wszystkich jego dzieł',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'W Twojej obecności Maryjo - wyznaję dziś wiarę w Jezusa Chrystusa: mojego jedynego Pana i Zbawiciela.',
+        title: 'W Twojej obecności Maryjo - wyznaję dziś wiarę w Jezusa Chrystusa: mojego jedynego Pana i Zbawiciela',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Uznając testament z Krzyża: "Oto Matka twoja" – przyjmuję dziś Ciebie Maryjo za moją Matkę i Królową.',
+        title: 'Uznając testament z Krzyża: "Oto Matka twoja" – przyjmuję dziś Ciebie Maryjo za moją Matkę i Królową',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'W zjednoczeniu z Sercem Jezusa i mocą Jego miłości.',
+        title: 'W zjednoczeniu z Sercem Jezusa i mocą Jego miłości',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Poświęcam się całkowicie Twojemu Niepokalanemu Sercu.',
+        title: 'Poświęcam się całkowicie Twojemu Niepokalanemu Sercu',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci całkowicie moje ciało.',
+        title: 'Oddaję Ci całkowicie moje ciało',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci moją pamięć i mój rozum, wszystkie moje myśli i pragnienia.',
+        title: 'Oddaję Ci moją pamięć i mój rozum, wszystkie moje myśli i pragnienia',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci moją wolę.',
+        title: 'Oddaję Ci moją wolę',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci całe moje życie i moją działalność.',
+        title: 'Oddaję Ci całe moje życie i moją działalność',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci całą moją przeszłość, teraźniejszość i przyszłość.',
+        title: 'Oddaję Ci całą moją przeszłość, teraźniejszość i przyszłość',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
       }, {
-        title: 'Oddaję Ci moją duszę i moje serce.',
+        title: 'Oddaję Ci moją duszę i moje serce',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
-      },
+      }, {
+        title: 'Pozostawiam Ci całkowite i zupełnie prawo do rozporządzania mną i wszystkim bez wyjątku co do mnie należy',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Dla wypełnienia Woli Ojca',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Dla spełnienia pragnień Jezusa',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Dla radości i chwały Ducha Świętego',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Z miłości ku Tobie Maryjo',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Dla ratowania dusz braci i sióstr naszych',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Chcę odtąd wszystko czynić z Tobą, przez Ciebie i dla Ciebie',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'By moje serce, moja rodzina, parafia, Ojczyzna i cały świat były rzeczywistym królestwem Twojego Syna i Twoim',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: 'Maryjo, moja Mamo i Królowo - chcę abyś mogła żyć, działać i kochać we mnie i przeze Mnie. Amen.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }, {
+        title: '„Oto czynię wszystko nowe”',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+      }
     ]
   },
   {
@@ -250,29 +291,132 @@ export default [
         title: 'Ja Cię ukształtowałem',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-      },
-      {
+      }, {
         title: 'Ja cię powołałem',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-      },
-      {
+      }, {
         title: 'Ja cię wybrałem',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-      },
-      {
+      }, {
         title: 'Ja cię umiłowałem',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-      },
-      {
+      }, {
         title: 'Nie jesteś sam',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-      },
-      {
+      }, {
         title: 'Czekam na Ciebie',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Modlę się w Tobie',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Dałem Ci moją Matkę',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Jesteś pośrednikiem',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Na wzór Chrystusa',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Apostołowie czasów ostatecznych',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Zwiastowanie - siła modlitwy',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Nawiedzenie - głos, który oczyszcza',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Ukazanie Jezusa światu - ręce, przez które są składane ofiary',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Poszukiwanie Jezusa w świątyni - wierność slużbie',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Życie ukryte – pamięć o Bożej obecności',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Kana Galilejska – wszystko cokolwiek wam powie.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Pod krzyżem – spojrzenie na grzesznika.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Pod krzyżem – powszechne macierzyństwo łaski.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Zesłanie Ducha Świętego – jedność eucharystyczna.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę, żebyś przyniósł owoc',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Nazwałem Cię przyjacielem',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę, żebyś płonął Moim ogniem.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę, żebyś był ze Mną.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Wybierz najlepszą część, której nie będziesz pozbawiony.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę cię wprowadzić w Moją ofiarę.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Jestem spragniony twojej miłości.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę żebyś żył łaską zmartwychwstania.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Chcę, żebyś Mnie uobecniał.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Nie należysz już do siebie. Należysz do Mnie.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Testament z krzyża.',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Kapłani poświęceni Niepokalanemu Sercu Maryi',
+        subtitle: '',
+        urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+      }, {
+        title: 'Dzieło Nieustannej Adoracji.',
         subtitle: '',
         urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
       },
