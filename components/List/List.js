@@ -4,6 +4,7 @@ import {ImageBackground, StyleSheet, View} from 'react-native';
 import images from '../../res/images/images';
 import Spinner from '../Spinner/Spinner';
 
+const DBG = true;
 function generateUrl(index, urlPattern) {
   return urlPattern.replace('${number}', index);
 }
