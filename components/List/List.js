@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Icon, List, ListItem, Spinner, Text} from '@ui-kitten/components';
+import {Icon, List, ListItem, Text} from '@ui-kitten/components';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import images from '../../res/images/images';
+import Spinner from '../Spinner/Spinner';
 
-const DBG = true;
 function generateUrl(index, urlPattern) {
   return urlPattern.replace('${number}', index);
 }
@@ -54,11 +54,9 @@ export default ({navigation, route: {params}}) => {
     />
   );
 
-  DBG && console.log('Drawing list');
   const [isFetching, setFetching] = useState(false);
-  const [data, setData] = useState(JSON.stringify(params.data.daysInfo));
+  const [data] = useState(JSON.stringify(params.data.daysInfo));
   useEffect(() => {
-    DBG && console.log('Effect in list');
     let isMounted = true;
     setFetching(true);
     setTimeout(() => isMounted && setFetching(false), 1000);
@@ -74,11 +72,7 @@ export default ({navigation, route: {params}}) => {
         data={params.data.daysInfo}
         renderItem={renderItem}
       />
-      {isFetching ? (
-        <View style={styles.spinnerContainer}>
-          <Spinner size="giant" status="success" />
-        </View>
-      ) : null}
+      <Spinner visability={isFetching} />
     </View>
   );
 };
@@ -88,17 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: 'grey',
-  },
-  spinnerContainer: {
-    position: 'absolute',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%',
-    zIndex: 2,
-    elevation: 2,
-    backgroundColor: 'rgba(52, 52, 52, 0.7)',
   },
   list: {
     width: '100%',
