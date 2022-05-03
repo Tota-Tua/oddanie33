@@ -24,7 +24,7 @@ const DayDetails = ({route: {params}}) => {
         originWhitelist={[]}
         source={{uri: params.url}}
         injectedJavaScript={injectedJSCode}
-        onLoadEnd={() => setTimeout(() => setFetching(false), 500)}
+        onLoadEnd={() => setTimeout(() => isMounted && setFetching(false), 500)}
         /*allowsFullscreenVideo={true} // does not work yet correctly with rotation */
       />
       <Spinner visability={isFetching} />

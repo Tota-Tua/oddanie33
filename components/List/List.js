@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {Icon, List, ListItem, Text} from '@ui-kitten/components';
-import {ImageBackground, StyleSheet, View} from 'react-native';
+import {ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
 import images from '../../res/images/images';
 import Spinner from '../Spinner/Spinner';
 
-const DBG = true;
 function generateUrl(index, urlPattern) {
   return urlPattern.replace('${number}', index);
 }
@@ -12,15 +11,14 @@ function generateUrl(index, urlPattern) {
 export default ({navigation, route: {params}}) => {
   const renderItemAccessory = props => {
     return (
-      // TODO
-      // implement adding to favorites
-      //<TouchableOpacity>
-      <Icon
-        style={[props.style, styles.iconStyle]}
-        name="heart"
-        /*fill="#FF0000"*/
-      />
-      //</TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("Przemus")}>
+        <Icon
+          style={[props.style, styles.iconStyle]}
+          name="heart"
+          animation="shake"
+          /*fill="#FF0000"*/
+        />
+      </TouchableOpacity>
     );
   };
 
@@ -103,6 +101,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   iconStyle: {
-    animation: 'zoom',
+    animation: 'pulse',
+    width: 32,
+    height: 32,
   },
 });
