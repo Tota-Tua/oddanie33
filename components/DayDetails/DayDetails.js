@@ -1,20 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import WebView from 'react-native-webview';
 import Spinner from '../Spinner/Spinner';
 import {StyleSheet, View} from 'react-native';
 
+const DELAY_BEFORE_USING_WEBVIEW = 1000;
 const DayDetails = ({route: {params}}) => {
   // the intention is to prevent from navigation
   const injectedJSCode =
     '["nav", "footer", ".nav"].forEach(el => document.querySelector(el).remove());';
 
   const [isFetching, setFetching] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMountedRef = useRef(false);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+
+    return () => (isMountedRef.current = false);
+  }, []);
+
   useEffect(() => {
     setFetching(true);
-    setIsMounted(true);
-    return () => isMounted && setIsMounted(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.url]);
 
   return (
@@ -24,7 +29,11 @@ const DayDetails = ({route: {params}}) => {
         originWhitelist={[]}
         source={{uri: params.url}}
         injectedJavaScript={injectedJSCode}
-        onLoadEnd={() => setTimeout(() => isMounted && setFetching(false), 500)}
+        onLoadEnd={() =>
+          setTimeout(() => {
+            isMountedRef.current && setFetching(false);
+          }, DELAY_BEFORE_USING_WEBVIEW)
+        }
         /*allowsFullscreenVideo={true} // does not work yet correctly with rotation */
       />
       <Spinner visability={isFetching} />
