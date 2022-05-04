@@ -1,25 +1,44 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Icon, List, ListItem, Text} from '@ui-kitten/components';
-import {ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import images from '../../res/images/images';
 import Spinner from '../Spinner/Spinner';
+
+const DELAY_BEFORE_USING_LIST = 1000;
 
 function generateUrl(index, urlPattern) {
   return urlPattern.replace('${number}', index);
 }
 
+const HeartIcon = ({style}) => {
+  const icon = useRef();
+  const [selected, setSelected] = useState(false);
+  const handleOnPress = () => {
+    setSelected(oldVal => !oldVal);
+    icon.current.startAnimation();
+  };
+
+  return (
+    <TouchableOpacity onPress={handleOnPress}>
+      <Icon
+        ref={icon}
+        style={[style, styles.iconStyle]}
+        name="heart"
+        animation="pulse"
+        {...(selected ? {fill: '#FF0000'} : {})}
+      />
+    </TouchableOpacity>
+  );
+};
+
 export default ({navigation, route: {params}}) => {
   const renderItemAccessory = props => {
-    return (
-      <TouchableOpacity onPress={() => console.log("Przemus")}>
-        <Icon
-          style={[props.style, styles.iconStyle]}
-          name="heart"
-          animation="shake"
-          /*fill="#FF0000"*/
-        />
-      </TouchableOpacity>
-    );
+    return <HeartIcon {...props} />;
   };
 
   const renderLeftPart = (props, dayNo) => {
@@ -55,13 +74,19 @@ export default ({navigation, route: {params}}) => {
 
   const [isFetching, setFetching] = useState(false);
   const [data] = useState(JSON.stringify(params.data.daysInfo));
+  const isMountedRef = useRef(false);
+
   useEffect(() => {
-    let isMounted = true;
+    isMountedRef.current = true;
+    return () => (isMountedRef.current = false);
+  }, []);
+
+  useEffect(() => {
     setFetching(true);
-    setTimeout(() => isMounted && setFetching(false), 1000);
-    return () => {
-      isMounted = false;
-    };
+    setTimeout(
+      () => isMountedRef.current && setFetching(false),
+      DELAY_BEFORE_USING_LIST,
+    );
   }, [data]);
 
   return (
@@ -101,7 +126,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   iconStyle: {
-    animation: 'pulse',
     width: 32,
     height: 32,
   },
