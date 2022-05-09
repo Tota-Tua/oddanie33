@@ -3,9 +3,9 @@ import {/*Text, */ View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import styles from './MainCarousel.styles';
-import carouselData from '../../res/retreatData/description';
 import SliderEntry from './components/SliderEntry';
 import {sliderWidth, itemWidth} from './components/SliderEntry.style';
+import carouselData from '../../utils/parseRetreatData';
 
 const FIRST_ACTIVE_SLIDE = 1;
 
