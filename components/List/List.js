@@ -11,10 +11,6 @@ import Spinner from '../Spinner/Spinner';
 
 const DELAY_BEFORE_USING_LIST = 1000;
 
-function generateUrl(index, urlPattern) {
-  return urlPattern.replace('${number}', index);
-}
-
 const HeartIcon = ({style}) => {
   const icon = useRef();
   const [selected, setSelected] = useState(false);
@@ -61,13 +57,11 @@ export default ({navigation, route: {params}}) => {
           {item.title}
         </Text>
       )}
-      description={props => <Text {...props}>{item.description}</Text>}
+      description={props => <Text {...props}>{item.subtitle}</Text>}
       accessoryLeft={props => renderLeftPart(props, index + 1)}
       accessoryRight={renderItemAccessory}
       onPress={() => {
-        navigation.navigate('DayDetails', {
-          url: generateUrl(index + 1, item.urlPattern),
-        });
+        navigation.navigate('DayDetails', { url: item.url});
       }}
     />
   );
@@ -126,7 +120,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   iconStyle: {
-    width: 32,
-    height: 32,
+    width: 28,
+    height: 28,
   },
 });
