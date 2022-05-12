@@ -4,9 +4,8 @@ import {
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-import Favorites from '../Favorites/Favorites';
 import Profile from '../Profile/Profile';
-import RetreatNavigation from './stackNavigation';
+import {RetreatNavigation, FavoritesNavigation} from './stackNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
@@ -40,7 +39,7 @@ const MyNavigationContainer = () => (
       />
       <Screen
         name="Favorites"
-        component={Favorites}
+        component={FavoritesNavigation}
         options={{headerShown: false}}
       />
       <Screen

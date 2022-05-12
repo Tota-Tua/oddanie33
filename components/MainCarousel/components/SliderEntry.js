@@ -59,9 +59,7 @@ export default class SliderEntry extends Component {
       <TouchableOpacity
         activeOpacity={1}
         style={styles.slideInnerContainer}
-        onPress={() =>
-          this.props.navigation.push('List', {data: this.props.data})
-        }>
+        onPress={() => this.props.navigation.push('List', this.props.data)}>
         <View style={styles.shadow} />
         <View
           style={[

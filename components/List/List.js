@@ -32,9 +32,15 @@ const HeartIcon = ({style}) => {
   );
 };
 
-export default ({navigation, route: {params}}) => {
+export default ({navigation, route: {params}, ...restProps}) => {
+  // the list takes input data either from route.params and if it is empty then from data param
+  const data = (params && params.data) || restProps.data;
   const renderItemAccessory = props => {
-    return <HeartIcon {...props} />;
+    return restProps.icon ? (
+      React.createElement(restProps.icon, props)
+    ) : (
+      <HeartIcon {...props} />
+    );
   };
 
   const renderLeftPart = (props, dayNo) => {
@@ -61,13 +67,14 @@ export default ({navigation, route: {params}}) => {
       accessoryLeft={props => renderLeftPart(props, index + 1)}
       accessoryRight={renderItemAccessory}
       onPress={() => {
-        navigation.navigate('DayDetails', { url: item.url});
+        restProps && restProps.onPress && restProps.onPress(item);
+        navigation.navigate('DayDetails', {url: item.url});
       }}
     />
   );
 
   const [isFetching, setFetching] = useState(false);
-  const [data] = useState(JSON.stringify(params.data.daysInfo));
+  const [stringifyData] = useState(JSON.stringify(data));
   const isMountedRef = useRef(false);
 
   useEffect(() => {
@@ -81,15 +88,11 @@ export default ({navigation, route: {params}}) => {
       () => isMountedRef.current && setFetching(false),
       DELAY_BEFORE_USING_LIST,
     );
-  }, [data]);
+  }, [stringifyData]);
 
   return (
     <View style={styles.container}>
-      <List
-        style={styles.list}
-        data={params.data.daysInfo}
-        renderItem={renderItem}
-      />
+      <List style={styles.list} data={data} renderItem={renderItem} />
       <Spinner visability={isFetching} />
     </View>
   );

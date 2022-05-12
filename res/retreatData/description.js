@@ -5,7 +5,7 @@ export default [
     illustration:
       'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/mateus-campos-felipe-f_Kdtqs8EWE-unsplash.jpg',
     urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
-    daysInfo: [
+    data: [
       {
         title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
         subtitle: 'Wersja ogólna',
@@ -162,7 +162,7 @@ export default [
     urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
     illustration:
       'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/pavel-nekoranec-LINQ-jgta8Q-unsplash.jpg',
-    daysInfo: [
+    data: [
       {
         title: 'NAJWIĘKSZY DAR',
         subtitle: 'Dla młodych',
@@ -311,7 +311,7 @@ export default [
     urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
     illustration:
       'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/MxMSkl8Q.jpg',
-    daysInfo: [
+    data: [
       {
         title: 'Ja Cię ukształtowałem',
         subtitle: 'Dla kapłanów',
@@ -366,7 +366,7 @@ export default [
       },
       {
         title: 'Ukazanie Jezusa światu - ręce, przez które są składane ofiary',
-        subtitle: 'Dla kapłanów'
+        subtitle: 'Dla kapłanów',
       },
       {
         title: 'Poszukiwanie Jezusa w świątyni - wierność slużbie',
