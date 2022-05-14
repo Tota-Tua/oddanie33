@@ -13,6 +13,26 @@ async function saveData() {
         subtitle: 'Wersja dla ksiezy',
         url: 'https://oddanie33.pl/dzien-23/tekst',
       },
+      {
+        title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
+        subtitle: 'Wersja ogólna',
+        url: 'https://oddanie33.pl/dzien-3/tekst',
+      },
+      {
+        title: 'Bu bu bu 3',
+        subtitle: 'Wersja dla ksiezy',
+        url: 'https://oddanie33.pl/dzien-23/tekst',
+      },
+      {
+        title: '„AS',
+        subtitle: 'Wersja ogólna',
+        url: 'https://oddanie33.pl/dzien-3/tekst',
+      },
+      {
+        title: 'Bu bu bu 5',
+        subtitle: 'Wersja dla ksiezy',
+        url: 'https://oddanie33.pl/dzien-23/tekst',
+      },
     ];
   }
 
