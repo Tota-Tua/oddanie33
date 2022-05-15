@@ -15,9 +15,9 @@
         },
     }];
 */
-import data from '../res/retreatData/description';
+import description from '../res/retreatData/description';
 
-const parsedData = data.map(singleRetreat => {
+const parsedData = description.map(singleRetreat => {
   const newRetreat = ['title', 'subtitle', 'illustration'].reduce(
     (result, key) => {
       result[key] = singleRetreat[key];

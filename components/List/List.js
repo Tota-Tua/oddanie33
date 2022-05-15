@@ -35,11 +35,12 @@ const HeartIcon = ({style}) => {
 export default ({navigation, route: {params}, ...restProps}) => {
   // the list takes input data either from route.params and if it is empty then from data param
   const data = (params && params.data) || restProps.data;
-  const renderItemAccessory = props => {
+  const renderItemAccessory = (props, item) => {
+    const updatedProps = Object.assign({item}, props);
     return restProps.icon ? (
-      React.createElement(restProps.icon, props)
+      React.createElement(restProps.icon, updatedProps)
     ) : (
-      <HeartIcon {...props} />
+      <HeartIcon {...updatedProps} />
     );
   };
 
@@ -65,7 +66,7 @@ export default ({navigation, route: {params}, ...restProps}) => {
       )}
       description={props => <Text {...props}>{item.subtitle}</Text>}
       accessoryLeft={props => renderLeftPart(props, index + 1)}
-      accessoryRight={renderItemAccessory}
+      accessoryRight={props => renderItemAccessory(props, item)}
       onPress={() => {
         restProps && restProps.onPress && restProps.onPress(item);
         navigation.navigate('DayDetails', {url: item.url});

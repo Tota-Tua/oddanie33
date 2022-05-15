@@ -14,10 +14,16 @@ const favoritesSlice = createSlice({
       const {payload} = param;
       state.favorites = [...state.favorites, payload];
     },
+    deleteFavorite: (state, param) => {
+      const {payload} = param;
+      const copy = state.favorites.slice();
+      copy.shift();
+      state.favorites = copy;
+    },
   },
 });
 
 const {actions, reducer} = favoritesSlice;
 
-export const {save, saveAll} = actions;
+export const {deleteFavorite, save, saveAll} = actions;
 export default reducer;
