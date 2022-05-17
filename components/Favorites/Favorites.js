@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import {Icon} from '@ui-kitten/components';
 import List from '../List/List';
 import store from '../../store/store';
-import {deleteFavorite} from '../../store/reducers/example';
+import {remove, updateRetreatList} from '../../store/reducers/favorites';
+
 function mapStateToProp(state) {
   const {favorites} = state;
   return {
@@ -17,8 +18,10 @@ const TrashIcon = ({style, item}) => {
   const [selected, setSelected] = useState(false);
   const handleOnPress = params => {
     setSelected(oldVal => !oldVal);
-    icon.current.startAnimation();
-    store.dispatch(deleteFavorite(item));
+    icon.current.startAnimation(() => {
+      store.dispatch(remove(item));
+      store.dispatch(updateRetreatList());
+    });
   };
 
   return (
@@ -35,6 +38,7 @@ const TrashIcon = ({style, item}) => {
 };
 
 const Favorites = params => {
+  console.log('Rysuje Favorites');
   return (
     <View style={styles.container}>
       <List {...params} icon={TrashIcon} />

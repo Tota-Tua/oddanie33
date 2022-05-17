@@ -6,32 +6,23 @@ async function saveData() {
       {
         title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
         subtitle: 'Wersja ogólna',
-        url: 'https://oddanie33.pl/dzien-3/tekst',
+        url: 'https://oddanie33.pl/dzien-1/tekst',
       },
       {
-        title: 'Bu bu bu',
-        subtitle: 'Wersja dla ksiezy',
-        url: 'https://oddanie33.pl/dzien-23/tekst',
+        title: '„DO DZIEWICY POŚLUBIONEJ MĘŻOWI, IMIENIEM JÓZEF” (Łk 1,27)',
+        subtitle: 'Wersja ogólna',
+        url: 'https://oddanie33.pl/dzien-2/tekst',
       },
       {
-        title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
+        title: '„BĄDŹ POZDROWIONA, PEŁNA ŁASKI, PAN Z TOBĄ” (Łk 1,28)',
         subtitle: 'Wersja ogólna',
         url: 'https://oddanie33.pl/dzien-3/tekst',
       },
       {
-        title: 'Bu bu bu 3',
-        subtitle: 'Wersja dla ksiezy',
-        url: 'https://oddanie33.pl/dzien-23/tekst',
-      },
-      {
-        title: '„AS',
+        title:
+          '„OTO POCZNIESZ I PORODZISZ SYNA, KTÓREMU NADASZ IMIĘ JEZUS” (Łk 1,31)',
         subtitle: 'Wersja ogólna',
-        url: 'https://oddanie33.pl/dzien-3/tekst',
-      },
-      {
-        title: 'Bu bu bu 5',
-        subtitle: 'Wersja dla ksiezy',
-        url: 'https://oddanie33.pl/dzien-23/tekst',
+        url: 'https://oddanie33.pl/dzien-4/tekst',
       },
     ];
   }

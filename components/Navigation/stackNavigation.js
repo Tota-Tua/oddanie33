@@ -1,7 +1,7 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Entry from '../Entry/Entry';
-import List from '../List/List';
+import RetreatList from '../RetreatList/RetreatList';
 import DayDetails from '../DayDetails/DayDetails';
 import Favorites from '../Favorites/Favorites';
 
@@ -12,9 +12,9 @@ export const RetreatNavigation = ({route, navigation}) => {
     <Navigator>
       <Screen name="Entry" component={Entry} options={{headerShown: false}} />
       <Screen
-        name="List"
+        name="RetreatList"
         options={{title: 'Wybierz dzień rekolekcji'}}
-        component={List}
+        component={RetreatList}
       />
       <Screen
         name="DayDetails"

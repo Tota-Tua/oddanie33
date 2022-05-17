@@ -39,7 +39,7 @@ const parsedData = description.map(singleRetreat => {
 });
 
 function generateUrl(index, urlPattern) {
-  return urlPattern.replace('${number}', index);
+  return urlPattern.replace('${number}', index + 1);
 }
 
 export default parsedData;

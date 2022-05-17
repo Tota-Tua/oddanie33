@@ -11,7 +11,7 @@ export default [
         subtitle: 'Wersja ogólna',
       },
       {
-        title: '"„DO DZIEWICY POŚLUBIONEJ MĘŻOWI, IMIENIEM JÓZEF” (Łk 1,27)',
+        title: '„DO DZIEWICY POŚLUBIONEJ MĘŻOWI, IMIENIEM JÓZEF” (Łk 1,27)',
         subtitle: 'Wersja ogólna',
       },
       {

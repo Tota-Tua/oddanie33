@@ -10,7 +10,7 @@ export default () => {
   return (
     <Provider store={store}>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.dark}>
+      <ApplicationProvider {...eva} theme={eva.light}>
         <MyNavigationContainer />
       </ApplicationProvider>
     </Provider>
