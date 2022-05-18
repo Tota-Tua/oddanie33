@@ -17,8 +17,6 @@ async function updateStateBasedOnAsyncStore() {
   const favorites = JSON.parse(jsonData);
 
   store.dispatch(saveAll(favorites));
-  console.log('store: saveAll');
-  //console.log(`Uwaga ${JSON.stringify(store.getState())}`);
 }
 
 export default store;

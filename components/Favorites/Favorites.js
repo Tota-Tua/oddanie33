@@ -18,10 +18,8 @@ const TrashIcon = ({style, item}) => {
   const [selected, setSelected] = useState(false);
   const handleOnPress = params => {
     setSelected(oldVal => !oldVal);
-    icon.current.startAnimation(() => {
-      store.dispatch(remove(item));
-      store.dispatch(updateRetreatList());
-    });
+    store.dispatch(remove(item));
+    store.dispatch(updateRetreatList());
   };
 
   return (
@@ -30,7 +28,7 @@ const TrashIcon = ({style, item}) => {
         ref={icon}
         style={[style, styles.icon]}
         name="trash-2-outline"
-        animation="pulse"
+        animation={null}
         {...(selected ? {fill: '#FF0000'} : {})}
       />
     </TouchableOpacity>
@@ -38,7 +36,6 @@ const TrashIcon = ({style, item}) => {
 };
 
 const Favorites = params => {
-  console.log('Rysuje Favorites');
   return (
     <View style={styles.container}>
       <List {...params} icon={TrashIcon} />

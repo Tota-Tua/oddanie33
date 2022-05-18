@@ -14,13 +14,14 @@ function isFavorite(item) {
 }
 
 const HeartIcon = ({style, item}) => {
-  //console.log('Rysuje serce');
   const icon = useRef();
   const [selected, setSelected] = useState(isFavorite(item));
   const handleOnPress = () => {
     setSelected(oldVal => {
       const action = oldVal ? remove : save;
-      icon.current.startAnimation(() => store.dispatch(action(item)));
+      // I know, it looks like a hack and probably it is !!!
+      // There were times when a warning was displaying about 'cannot render a component when another one is being rendered'
+      setTimeout(() => store.dispatch(action(item), 0));
       return !oldVal;
     });
   };
@@ -31,7 +32,7 @@ const HeartIcon = ({style, item}) => {
         ref={icon}
         style={[style, styles.icon]}
         name="heart"
-        animation="pulse"
+        animation={null}
         {...(selected ? {fill: '#FF0000'} : {})}
       />
     </TouchableOpacity>
@@ -39,7 +40,6 @@ const HeartIcon = ({style, item}) => {
 };
 
 const RetreatList = params => {
-  //console.log(`Rysuje RetreatList dla ${JSON.stringify(params)}`);
   useSelector(state => state.updateRetreatList);
   return (
     <View style={styles.container}>
@@ -47,17 +47,6 @@ const RetreatList = params => {
     </View>
   );
 };
-
-// class RetreatList extends React.Component {
-//   //useSelector(state => state.updateRetreatList);
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <List {...this.props} icon={HeartIcon} />
-//       </View>
-//     );
-//   }
-// };
 
 const styles = StyleSheet.create({
   container: {

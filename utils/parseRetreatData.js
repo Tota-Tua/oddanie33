@@ -7,11 +7,13 @@
             title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
             subtitle: 'Wersja ogólna',
             url: 'https://oddanie33.pl/dzien-1/tekst',
+            day: 1,
         },
         {
             title: '"„DO DZIEWICY POŚLUBIONEJ MĘŻOWI, IMIENIEM JÓZEF” (Łk 1,27)',
             subtitle: 'Wersja ogólna',
             url: 'https://oddanie33.pl/dzien-2/tekst',
+            day: 2,
         },
     }];
 */
@@ -27,11 +29,12 @@ const parsedData = description.map(singleRetreat => {
   );
   const data = singleRetreat.data;
 
-  newRetreat.data = data.map((day, index) => {
-    const {title, subtitle} = day;
+  newRetreat.data = data.map((dayInfo, index) => {
+    const {title, subtitle} = dayInfo;
     return {
       title,
       subtitle,
+      day: index + 1,
       url: generateUrl(index, singleRetreat.urlPattern),
     };
   });
