@@ -1,22 +1,32 @@
 import {configureStore} from '@reduxjs/toolkit';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
 import rootReducer from './reducers/favorites';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import saveInitialDataInAsyncStorage from './index';
-import {saveAll} from './reducers/favorites';
+
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage: AsyncStorage,
+};
+
+const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedRootReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
-
-saveInitialDataInAsyncStorage()
-  .then(updateStateBasedOnAsyncStore)
-  .catch(console.log);
-
-async function updateStateBasedOnAsyncStore() {
-  const jsonData = await AsyncStorage.getItem('favorites');
-  const favorites = JSON.parse(jsonData);
-
-  store.dispatch(saveAll(favorites));
-}
 
 export default store;
