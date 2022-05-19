@@ -1,40 +1,23 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Icon, List, ListItem, Text} from '@ui-kitten/components';
-import {
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {List, ListItem, Text} from '@ui-kitten/components';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 import images from '../../res/images/images';
 import Spinner from '../Spinner/Spinner';
 
 const DELAY_BEFORE_USING_LIST = 1000;
-
-const HeartIcon = ({style}) => {
-  const icon = useRef();
-  const [selected, setSelected] = useState(false);
-  const handleOnPress = () => {
-    setSelected(oldVal => !oldVal);
-    icon.current.startAnimation();
-  };
-
-  return (
-    <TouchableOpacity onPress={handleOnPress}>
-      <Icon
-        ref={icon}
-        style={[style, styles.iconStyle]}
-        name="heart"
-        animation="pulse"
-        {...(selected ? {fill: '#FF0000'} : {})}
-      />
-    </TouchableOpacity>
-  );
-};
-
-export default ({navigation, route: {params}}) => {
-  const renderItemAccessory = props => {
-    return <HeartIcon {...props} />;
+export default ({navigation, route: {params}, ...restProps}) => {
+  // the list takes input data either from route.params and if it is empty then from data param
+  const data = (params && params.data) || restProps.data;
+  const renderItemAccessory = (props, item) => {
+    const updatedProps = Object.assign(
+      {
+        item,
+      },
+      props,
+    );
+    return restProps.icon
+      ? React.createElement(restProps.icon, updatedProps)
+      : null;
   };
 
   const renderLeftPart = (props, dayNo) => {
@@ -58,16 +41,17 @@ export default ({navigation, route: {params}}) => {
         </Text>
       )}
       description={props => <Text {...props}>{item.subtitle}</Text>}
-      accessoryLeft={props => renderLeftPart(props, index + 1)}
-      accessoryRight={renderItemAccessory}
+      accessoryLeft={props => renderLeftPart(props, item.day)}
+      accessoryRight={props => renderItemAccessory(props, item)}
       onPress={() => {
-        navigation.navigate('DayDetails', { url: item.url});
+        restProps && restProps.onPress && restProps.onPress(item);
+        navigation.navigate('DayDetails', {url: item.url});
       }}
     />
   );
 
   const [isFetching, setFetching] = useState(false);
-  const [data] = useState(JSON.stringify(params.data.daysInfo));
+  const [stringifyData] = useState(JSON.stringify(data));
   const isMountedRef = useRef(false);
 
   useEffect(() => {
@@ -81,31 +65,45 @@ export default ({navigation, route: {params}}) => {
       () => isMountedRef.current && setFetching(false),
       DELAY_BEFORE_USING_LIST,
     );
-  }, [data]);
+  }, [stringifyData]);
 
   return (
-    <View style={styles.container}>
+    <>
       <List
+        contentContainerStyle={styles.contentList}
         style={styles.list}
-        data={params.data.daysInfo}
+        data={data}
         renderItem={renderItem}
+        keyExtractor={item => item.title}
+        ListEmptyComponent={renderEmptyList}
       />
       <Spinner visability={isFetching} />
-    </View>
+    </>
   );
 };
 
+function renderEmptyList() {
+  return (
+    <View style={styles.emptyListView}>
+      <Text>Lista jest pusta </Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'grey',
-  },
   list: {
     width: '100%',
     height: '100%',
     zIndex: 1,
     elevation: 1,
+  },
+  contentList: {
+    flexGrow: 1,
+  },
+  emptyListView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bgContainer: {
     height: 60,
@@ -118,9 +116,5 @@ const styles = StyleSheet.create({
   imgText: {
     textAlign: 'center',
     color: 'white',
-  },
-  iconStyle: {
-    width: 28,
-    height: 28,
   },
 });

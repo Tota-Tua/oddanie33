@@ -1,10 +1,44 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {connect} from 'react-redux';
+import {Icon} from '@ui-kitten/components';
+import List from '../List/List';
+import store from '../../store/store';
+import {remove, updateRetreatList} from '../../store/reducers/favorites';
 
-export default () => {
+function mapStateToProp(state) {
+  const {favorites} = state;
+  return {
+    data: favorites,
+  };
+}
+
+const TrashIcon = ({style, item}) => {
+  const icon = useRef();
+  const [selected, setSelected] = useState(false);
+  const handleOnPress = params => {
+    setSelected(oldVal => !oldVal);
+    store.dispatch(remove(item));
+    store.dispatch(updateRetreatList());
+  };
+
+  return (
+    <TouchableOpacity onPress={handleOnPress}>
+      <Icon
+        ref={icon}
+        style={[style, styles.icon]}
+        name="trash-2-outline"
+        animation={null}
+        {...(selected ? {fill: '#FF0000'} : {})}
+      />
+    </TouchableOpacity>
+  );
+};
+
+const Favorites = params => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>FAVORITES</Text>
+      <List {...params} icon={TrashIcon} />
     </View>
   );
 };
@@ -12,10 +46,11 @@ export default () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  text: {
-    color: 'black',
+  icon: {
+    width: 28,
+    height: 28,
   },
 });
+
+export default connect(mapStateToProp)(Favorites);
