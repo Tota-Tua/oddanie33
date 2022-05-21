@@ -4,7 +4,7 @@ import {
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-import Profile from '../Profile/Profile';
+import {DrawerNavigator} from '../Drawer/Drawer';
 import {RetreatNavigation, FavoritesNavigation} from './stackNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -13,7 +13,7 @@ const {Navigator, Screen} = createBottomTabNavigator();
 
 const HomeIcon = props => <Icon {...props} name="home" />;
 const FavoriteIcon = props => <Icon {...props} name="heart" />;
-const ProfileIcon = props => <Icon {...props} name="person" />;
+const SettingsIcon = props => <Icon {...props} name="heart" />;
 
 function handleOnSelect(routeName, navigation) {
   navigation.navigate(routeName);
@@ -25,7 +25,7 @@ const MyBottomNavigation = ({navigation, state}) => (
     onSelect={index => handleOnSelect(state.routeNames[index], navigation)}>
     <BottomNavigationTab title="MAIN" icon={HomeIcon} />
     <BottomNavigationTab title="FAVORITES" icon={FavoriteIcon} />
-    <BottomNavigationTab title="PROFILE" icon={ProfileIcon} />
+    <BottomNavigationTab title="SETTINGS" icon={SettingsIcon} />
   </BottomNavigation>
 );
 
@@ -43,8 +43,8 @@ const MyNavigationContainer = () => (
         options={{headerShown: false}}
       />
       <Screen
-        name="Profile"
-        component={Profile}
+        name="Drawer"
+        component={DrawerNavigator}
         options={{headerShown: false}}
       />
     </Navigator>
