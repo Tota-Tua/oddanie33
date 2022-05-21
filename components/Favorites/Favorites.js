@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Icon} from '@ui-kitten/components';
+import {Icon, TopNavigation} from '@ui-kitten/components';
 import List from '../List/List';
 import store from '../../store/store';
 import {remove, updateRetreatList} from '../../store/reducers/favorites';
@@ -38,6 +38,7 @@ const TrashIcon = ({style, item}) => {
 const Favorites = params => {
   return (
     <View style={styles.container}>
+      <TopNavigation alignment="center" title="Ulubione" />
       <List {...params} icon={TrashIcon} />
     </View>
   );

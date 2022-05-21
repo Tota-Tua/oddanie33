@@ -15,7 +15,7 @@ export default () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <IconRegistry icons={EvaIconsPack} />
-        <ApplicationProvider {...eva} theme={eva.light}>
+        <ApplicationProvider {...eva} theme={eva.dark}>
           <MyNavigationContainer />
         </ApplicationProvider>
       </PersistGate>

@@ -1,10 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
 import WebView from 'react-native-webview';
+import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import Spinner from '../Spinner/Spinner';
 import {StyleSheet, View} from 'react-native';
 
+const BackIcon = props => <Icon {...props} name="arrow-back" />;
+
+const BackAction = (navigation, props) => (
+  <TopNavigationAction icon={BackIcon} onPressIn={() => navigation.goBack()} />
+);
+
 const DELAY_BEFORE_USING_WEBVIEW = 1000;
-const DayDetails = ({route: {params}}) => {
+const DayDetails = ({navigation, route: {params}}) => {
   // the intention is to prevent from navigation
   const injectedJSCode =
     '["nav", "footer", ".nav"].forEach(el => document.querySelector(el).remove());';
@@ -24,6 +31,12 @@ const DayDetails = ({route: {params}}) => {
 
   return (
     <View style={styles.container}>
+      <TopNavigation
+        alignment="center"
+        accessoryLeft={BackAction.bind(undefined, navigation)}
+        title="Opis rekolekcji"
+      />
+
       <WebView
         style={styles.webView}
         originWhitelist={[]}
