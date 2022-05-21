@@ -13,12 +13,18 @@ export const RetreatNavigation = ({route, navigation}) => {
       <Screen name="Entry" component={Entry} options={{headerShown: false}} />
       <Screen
         name="RetreatList"
-        options={{title: 'Wybierz dzień rekolekcji'}}
+        options={{
+          title: 'Wybierz dzień rekolekcji',
+          headerShown: false,
+        }}
         component={RetreatList}
       />
       <Screen
         name="DayDetails"
-        options={{title: 'Opis dnia'}}
+        options={{
+          title: 'Opis dnia',
+          headerShown: false,
+        }}
         component={DayDetails}
       />
     </Navigator>
@@ -31,11 +37,17 @@ export const FavoritesNavigation = ({route, navigation}) => {
       <Screen
         name="EntryFavorites"
         component={Favorites}
-        options={{title: 'Ulubione'}}
+        options={{
+          title: 'Ulubione',
+          headerShown: false,
+        }}
       />
       <Screen
         name="DayDetails"
-        options={{title: 'Opis dnia'}}
+        options={{
+          title: 'Opis dnia',
+          headerShown: false,
+        }}
         component={DayDetails}
       />
     </Navigator>
