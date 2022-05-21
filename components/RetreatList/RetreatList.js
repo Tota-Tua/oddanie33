@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useSelector} from 'react-redux';
-import {Icon} from '@ui-kitten/components';
+import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import List from '../List/List';
 import store from '../../store/store';
 import {remove, save} from '../../store/reducers/favorites';
@@ -39,10 +39,22 @@ const HeartIcon = ({style, item}) => {
   );
 };
 
+const BackIcon = props => <Icon {...props} name="arrow-back" />;
+
+const BackAction = (navigation, props) => (
+  <TopNavigationAction icon={BackIcon} onPressIn={() => navigation.goBack()} />
+);
+
 const RetreatList = params => {
   useSelector(state => state.updateRetreatList);
+
   return (
     <View style={styles.container}>
+      <TopNavigation
+        alignment="center"
+        accessoryLeft={BackAction.bind(undefined, params.navigation)}
+        title="Wybierz dzień rekolekcji"
+      />
       <List {...params} icon={HeartIcon} />
     </View>
   );
