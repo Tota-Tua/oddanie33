@@ -4,6 +4,7 @@ import Entry from '../Entry/Entry';
 import RetreatList from '../RetreatList/RetreatList';
 import DayDetails from '../DayDetails/DayDetails';
 import Favorites from '../Favorites/Favorites';
+import Settings from '../Settings/Settings';
 
 const {Navigator, Screen} = createNativeStackNavigator();
 
@@ -26,6 +27,14 @@ export const RetreatNavigation = ({route, navigation}) => {
           headerShown: false,
         }}
         component={DayDetails}
+      />
+      <Screen
+        name="Settings"
+        options={{
+          title: 'Ustawienia',
+          headerShown: false,
+        }}
+        component={Settings}
       />
     </Navigator>
   );
