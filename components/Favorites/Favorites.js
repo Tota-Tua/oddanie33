@@ -9,7 +9,7 @@ import {remove, updateRetreatList} from '../../store/reducers/favorites';
 function mapStateToProp(state) {
   const {favorites} = state;
   return {
-    data: favorites,
+    data: favorites.items,
   };
 }
 

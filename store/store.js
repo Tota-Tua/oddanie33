@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {
   persistReducer,
   FLUSH,
@@ -8,7 +8,8 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import rootReducer from './reducers/favorites';
+import favoritesReducer from './reducers/favorites';
+import settingsReducer from './reducers/settings';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
@@ -16,6 +17,12 @@ const persistConfig = {
   version: 1,
   storage: AsyncStorage,
 };
+
+//const rootReducer = [favoritesReducer, settingsReducer];
+const rootReducer = combineReducers({
+  favorites: favoritesReducer,
+  settings: settingsReducer,
+});
 
 const persistedRootReducer = persistReducer(persistConfig, rootReducer);
 

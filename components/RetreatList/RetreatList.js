@@ -8,7 +8,7 @@ import {remove, save} from '../../store/reducers/favorites';
 
 function isFavorite(item) {
   const favorites = store.getState().favorites;
-  return favorites.some(
+  return favorites.items.some(
     refItem => JSON.stringify(refItem) === JSON.stringify(item),
   );
 }
@@ -46,7 +46,7 @@ const BackAction = (navigation, props) => (
 );
 
 const RetreatList = params => {
-  useSelector(state => state.updateRetreatList);
+  useSelector(state => state.favorites.updateRetreatList);
 
   return (
     <View style={styles.container}>
