@@ -3,7 +3,7 @@ import {SafeAreaView, View} from 'react-native';
 // import LinearGradient from 'react-native-linear-gradient';
 import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import MainCarousel from '../MainCarousel/MainCarousel';
-import styles/*, {colors}*/ from '../Entry/Entry.styles';
+import styles /*, {colors}*/ from '../Entry/Entry.styles';
 
 const MenuIcon = props => <Icon {...props} name="menu-outline" />;
 

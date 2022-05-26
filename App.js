@@ -8,7 +8,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import MyNavigationContainer from './components/Navigation/bottomNavigation';
 import store from './store/store';
 
-const getModeStrRepresent = mode => (mode ? 'light' : 'dark');
+const getModeStrRepresent = mode => (mode ? 'dark' : 'light');
 const ApplicationProviderWrappper = () => {
   const mode = store.getState().settings.darkMode;
   const modeName = getModeStrRepresent(mode);

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   Icon,
@@ -18,6 +18,16 @@ const BackAction = (navigation, props) => (
 const Settings = ({navigation}) => {
   const darkMode = store.getState().settings.darkMode;
   const [nightMode, setNightMode] = useState(darkMode);
+  const notMounted = useRef(true);
+
+  useEffect(() => {
+    // avoid processing during the first render
+    if (notMounted.current) {
+      notMounted.current = false;
+      return;
+    }
+    store.dispatch(setDarkMode(nightMode));
+  }, [nightMode]);
 
   return (
     <View style={styles.container}>
@@ -28,13 +38,8 @@ const Settings = ({navigation}) => {
       />
       <Toggle
         checked={nightMode}
-        onChange={() =>
-          setNightMode(nightMode => {
-            store.dispatch(setDarkMode(!nightMode));
-
-            return !nightMode;
-          })
-        }>
+        onChange={() => setNightMode(oldMode => !oldMode)}
+      >
         {props => <Text {...props}>Włącz tryb nocny</Text>}
       </Toggle>
     </View>
