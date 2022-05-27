@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {List, ListItem, Text} from '@ui-kitten/components';
+import {Divider, List, ListItem, Text} from '@ui-kitten/components';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import images from '../../res/images/images';
 import Spinner from '../Spinner/Spinner';
@@ -76,6 +76,7 @@ export default ({navigation, route: {params}, ...restProps}) => {
         renderItem={renderItem}
         keyExtractor={item => item.title}
         ListEmptyComponent={renderEmptyList}
+        ItemSeparatorComponent={Divider}
       />
       <Spinner visability={isFetching} />
     </>

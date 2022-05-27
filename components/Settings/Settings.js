@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import {
+  Divider,
   Icon,
+  Layout,
   Text,
   Toggle,
   TopNavigation,
@@ -30,26 +32,39 @@ const Settings = ({navigation}) => {
   }, [nightMode]);
 
   return (
-    <View style={styles.container}>
+    <Layout style={styles.container}>
       <TopNavigation
         accessoryLeft={BackAction.bind(undefined, navigation)}
         title="Ustawienia"
         alignment="center"
       />
-      <Toggle
-        checked={nightMode}
-        onChange={() => setNightMode(oldMode => !oldMode)}
-      >
-        {props => <Text {...props}>Włącz tryb nocny</Text>}
-      </Toggle>
-    </View>
+      <Divider />
+      <TouchableOpacity
+        style={styles.item}
+        activeOpacity={1.0}
+        onPress={() => setNightMode(oldMode => !oldMode)}>
+        <Text category="p1" appearance="hint">
+          Włącz tryb nocny
+        </Text>
+        <Toggle
+          checked={nightMode}
+          onChange={() => setNightMode(oldMode => !oldMode)}
+        />
+      </TouchableOpacity>
+      <Divider />
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'orange',
+  },
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
   },
 });
 
