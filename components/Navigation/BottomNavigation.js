@@ -4,7 +4,6 @@ import {
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-// import Profile from '../Profile/Profile';
 import {RetreatNavigation, FavoritesNavigation} from './stackNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -13,7 +12,6 @@ const {Navigator, Screen} = createBottomTabNavigator();
 
 const HomeIcon = props => <Icon {...props} name="home" />;
 const FavoriteIcon = props => <Icon {...props} name="heart" />;
-// const ProfileIcon = props => <Icon {...props} name="person" />;
 
 function handleOnSelect(routeName, navigation) {
   navigation.navigate(routeName);
@@ -25,7 +23,6 @@ const MyBottomNavigation = ({navigation, state}) => (
     onSelect={index => handleOnSelect(state.routeNames[index], navigation)}>
     <BottomNavigationTab title="Start" icon={HomeIcon} />
     <BottomNavigationTab title="Ulubione" icon={FavoriteIcon} />
-    {/* <BottomNavigationTab title="PROFILE" icon={ProfileIcon} /> */}
   </BottomNavigation>
 );
 
@@ -42,11 +39,6 @@ const MyNavigationContainer = () => (
         component={FavoritesNavigation}
         options={{headerShown: false}}
       />
-      {/* <Screen
-        name="Profile"
-        component={Profile}
-        options={{headerShown: false}}
-      /> */}
     </Navigator>
   </NavigationContainer>
 );
