@@ -5,7 +5,7 @@ import {persistStore} from 'redux-persist';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import * as eva from '@eva-design/eva';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
-import MyNavigationContainer from './components/Navigation/bottomNavigation';
+import MyNavigationContainer from './components/Navigation/BottomNavigation';
 import store from './store/store';
 
 const getModeStrRepresent = mode => (mode ? 'dark' : 'light');
