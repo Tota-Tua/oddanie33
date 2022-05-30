@@ -9,10 +9,9 @@ export const colors = {
 
 export default StyleSheet.create({
   exampleContainer: {
-    flex: 1, // resizes to its parent
-    borderColor: 'orange',
+    flex: 1,
     borderRadius: 1,
-    //borderWidth: 2
+    paddingBottom: 10,
   },
   exampleContainerDark: {
     backgroundColor: colors.black,
@@ -27,9 +26,6 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-  },
-  titleDark: {
-    color: colors.black,
   },
   slider: {
     marginTop: 15,
