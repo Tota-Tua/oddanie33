@@ -21,8 +21,8 @@ const MyBottomNavigation = ({navigation, state}) => (
   <BottomNavigation
     selectedIndex={state.index}
     onSelect={index => handleOnSelect(state.routeNames[index], navigation)}>
-    <BottomNavigationTab title="Start" icon={HomeIcon} />
-    <BottomNavigationTab title="Ulubione" icon={FavoriteIcon} />
+    <BottomNavigationTab icon={HomeIcon} />
+    <BottomNavigationTab icon={FavoriteIcon} />
   </BottomNavigation>
 );
 
