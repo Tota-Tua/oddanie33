@@ -1,0 +1,26 @@
+Description
+---------------
+Oddanie33 is an app intended for serving retreat content which is accessible via web: https://oddanie33.pl/
+The used components should be in line with Android and IOS what means that the app should run flawessly on these operatig systems.
+
+How to create the environment (Windows/Linux/macOS)
+-----------------------------------------------------
+Follow the steps described here https://reactnative.dev/docs/environment-setup 
+So far the tests have been made only for Windows (React Native CLI without Expo) which includes installation of:
+    x Chocolatey
+    x openJDK -> choco install -y nodejs-lts openjdk11
+    x Android Studio + Android SDK
+configure ANDROID_HOME env var
+
+How to run the app on a physical device
+-----------------------------------------
+WINDOWS
+---------
+x connect a smartphone to a computer
+x double check the phone is visible (should be listed in the oputput of `adb devices`)
+x from the parent directory level enter: `npx react-native run-android`
+x wait until the code is built and uploaded onto a smartphone
+
+IOS
+---------
+Have not tested yet
