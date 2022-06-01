@@ -3,6 +3,7 @@ import WebView from 'react-native-webview';
 import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import Spinner from '../Spinner/Spinner';
 import {StyleSheet, View} from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 
 const BackIcon = props => <Icon {...props} name="arrow-back" />;
 
@@ -20,9 +21,13 @@ const DayDetails = ({navigation, route: {params}}) => {
   const isMountedRef = useRef(false);
 
   useEffect(() => {
+    Orientation.unlockAllOrientations();
     isMountedRef.current = true;
 
-    return () => (isMountedRef.current = false);
+    return () => {
+      Orientation.lockToPortrait();
+      isMountedRef.current = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -47,7 +52,7 @@ const DayDetails = ({navigation, route: {params}}) => {
             isMountedRef.current && setFetching(false);
           }, DELAY_BEFORE_USING_WEBVIEW)
         }
-        /*allowsFullscreenVideo={true} // does not work yet correctly with rotation */
+        allowsFullscreenVideo={true} // does not work yet correctly with rotation */
       />
       <Spinner visability={isFetching} />
     </View>

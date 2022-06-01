@@ -4,8 +4,8 @@ import {
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-import {RetreatNavigation, FavoritesNavigation} from './stackNavigation';
-import {NavigationContainer} from '@react-navigation/native';
+import {RetreatNavigation, FavoritesNavigation} from './StackNavigation';
+import {CommonActions, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const {Navigator, Screen} = createBottomTabNavigator();
@@ -13,14 +13,22 @@ const {Navigator, Screen} = createBottomTabNavigator();
 const HomeIcon = props => <Icon {...props} name="home" />;
 const FavoriteIcon = props => <Icon {...props} name="heart" />;
 
-function handleOnSelect(routeName, navigation) {
-  navigation.navigate(routeName);
+function handleOnSelect(index, routeName, navigation) {
+  navigation.dispatch(
+    CommonActions.reset({
+      index: index,
+      routes: [{name: 'Retreat'}, {name: 'Favorites'}],
+    }),
+  );
+  //navigation.navigate(routeName);
 }
 
 const MyBottomNavigation = ({navigation, state}) => (
   <BottomNavigation
     selectedIndex={state.index}
-    onSelect={index => handleOnSelect(state.routeNames[index], navigation)}>
+    onSelect={index =>
+      handleOnSelect(index, state.routeNames[index], navigation)
+    }>
     <BottomNavigationTab icon={HomeIcon} />
     <BottomNavigationTab icon={FavoriteIcon} />
   </BottomNavigation>
