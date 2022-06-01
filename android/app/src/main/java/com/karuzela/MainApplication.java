@@ -13,6 +13,9 @@ import com.karuzela.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+// to use react-native-orientation-locker
+import org.wonday.orientation.OrientationActivityLifecycle;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -52,6 +55,9 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    // the bwlow line was added to use react-native-oreitnation-locker
+    registerActivityLifecycleCallbacks(OrientationActivityLifecycle.getInstance());
+
     // If you opted-in for the New Architecture, we enable the TurboModule system
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);

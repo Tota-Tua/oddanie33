@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Provider, useSelector} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistStore} from 'redux-persist';
@@ -7,6 +7,7 @@ import * as eva from '@eva-design/eva';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import MyNavigationContainer from './components/Navigation/BottomNavigation';
 import store from './store/store';
+import Orientation from 'react-native-orientation-locker';
 
 const getModeStrRepresent = mode => (mode ? 'dark' : 'light');
 const ApplicationProviderWrappper = () => {
@@ -14,6 +15,7 @@ const ApplicationProviderWrappper = () => {
   const modeName = getModeStrRepresent(mode);
 
   useSelector(state => state.settings.darkMode);
+  useEffect(() => Orientation.lockToPortrait(), []);
 
   return (
     <ApplicationProvider {...eva} theme={eva[modeName]}>
