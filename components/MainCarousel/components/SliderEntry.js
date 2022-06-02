@@ -3,6 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {ParallaxImage} from 'react-native-snap-carousel';
 import styles from './SliderEntry.style';
+import images from '../../../res/images/images';
 
 export default class SliderEntry extends Component {
   static propTypes = {
@@ -10,20 +11,17 @@ export default class SliderEntry extends Component {
     even: PropTypes.bool,
     parallax: PropTypes.bool,
     parallaxProps: PropTypes.object,
-    //navigation: PropTypes.object
+    navigation: PropTypes.object,
   };
 
   get image() {
-    const {
-      data: {illustration},
-      parallax,
-      parallaxProps,
-      even,
-    } = this.props;
+    const picName = this.props.data.illustration;
+    const curImg = images[picName];
+    const {parallax, parallaxProps, even} = this.props;
 
     return parallax ? (
       <ParallaxImage
-        source={{uri: illustration}}
+        source={curImg}
         // ZMIANA START
         // blad Failed prop type: Prop containerStyle passed to ParallaxImage. Has invalid keys 0, 1
         // z containerStyle={styles.imageContainer, even ? styles.imageContainerEven : {}]} na
@@ -36,7 +34,7 @@ export default class SliderEntry extends Component {
         {...parallaxProps}
       />
     ) : (
-      <Image source={{uri: illustration}} style={styles.image} />
+      <Image source={curImg} style={styles.image} />
     );
   }
 
