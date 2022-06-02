@@ -2,8 +2,7 @@ export default [
   {
     title: '33 dni',
     subtitle: 'Wersja ogólna',
-    illustration:
-      'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/mateus-campos-felipe-f_Kdtqs8EWE-unsplash.jpg',
+    illustration: 'slide1',
     urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
     data: [
       {
@@ -160,8 +159,7 @@ export default [
     title: '33 dni dla młodych',
     subtitle: 'Treści stworzone pod kątem młodych',
     urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
-    illustration:
-      'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/pavel-nekoranec-LINQ-jgta8Q-unsplash.jpg',
+    illustration: 'slide2',
     data: [
       {
         title: 'NAJWIĘKSZY DAR',
@@ -309,8 +307,7 @@ export default [
     title: 'Dla kapłanów',
     subtitle: '',
     urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
-    illustration:
-      'http://powolani.modlitwazakaplana.pl/wp-content/uploads/2022/03/MxMSkl8Q.jpg',
+    illustration: 'slide3',
     data: [
       {
         title: 'Ja Cię ukształtowałem',
