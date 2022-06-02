@@ -1,11 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const favoritesSlice = createSlice({
-  name: 'ksiazka',
+  name: "favorites",
   initialState: {
     items: [],
     updateRetreatList: 0,
-    bubasa: 'pol',
   },
   reducers: {
     save: (state, param) => {

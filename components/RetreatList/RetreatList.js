@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
@@ -15,17 +15,21 @@ function isFavorite(item) {
 
 const HeartIcon = ({style, item}) => {
   const icon = useRef();
+  const isNotMounted = useRef(true);
   const [selected, setSelected] = useState(isFavorite(item));
-  const handleOnPress = () => {
-    setSelected(oldVal => {
-      const action = oldVal ? remove : save;
-      // I know, it looks like a hack and probably it is !!!
-      // There were times when a warning was displaying about 'cannot render a component when another one is being rendered'
-      setTimeout(() => store.dispatch(action(item), 0));
-      return !oldVal;
-    });
-  };
+  // update store once heart was clicked
+  useEffect(() => {
+    // avoid execution before it is not mounted
+    if (isNotMounted.current) {
+      isNotMounted.current = false;
+      return;
+    }
+    const action = selected ? save : remove;
+    store.dispatch(action(item));
+  }, [selected]);
 
+
+  const handleOnPress = () => setSelected(oldVal => !oldVal);
   return (
     <TouchableOpacity onPress={handleOnPress}>
       <Icon
