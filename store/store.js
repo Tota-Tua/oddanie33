@@ -8,9 +8,10 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import favoritesReducer from './reducers/favorites';
 import settingsReducer from './reducers/settings';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import completedDaysReducer from './reducers/completed';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   favorites: favoritesReducer,
   settings: settingsReducer,
+  completed: completedDaysReducer,
 });
 
 const persistedRootReducer = persistReducer(persistConfig, rootReducer);

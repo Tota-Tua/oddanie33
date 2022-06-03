@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import List from '../List/List';
 import store from '../../store/store';
@@ -17,6 +17,7 @@ const HeartIcon = ({style, item}) => {
   const icon = useRef();
   const isNotMounted = useRef(true);
   const [selected, setSelected] = useState(isFavorite(item));
+  const dispatch = useDispatch();
   // update store once heart was clicked
   useEffect(() => {
     // avoid execution before it is not mounted
@@ -25,9 +26,9 @@ const HeartIcon = ({style, item}) => {
       return;
     }
     const action = selected ? save : remove;
-    store.dispatch(action(item));
+    dispatch(action(item));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
-
 
   const handleOnPress = () => setSelected(oldVal => !oldVal);
   return (
