@@ -27,6 +27,9 @@ const favoritesSlice = createSlice({
         console.error('Cannot remove a favorite item');
       }
     },
+    removeAll: state => {
+      state.items = [];
+    },
     updateRetreatList: state => {
       state.updateRetreatList++;
     },
@@ -35,5 +38,5 @@ const favoritesSlice = createSlice({
 
 const {actions, reducer} = favoritesSlice;
 
-export const {remove, save, updateRetreatList} = actions;
+export const {remove, removeAll, save, updateRetreatList} = actions;
 export default reducer;

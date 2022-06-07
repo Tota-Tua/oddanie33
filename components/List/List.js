@@ -6,7 +6,7 @@ import Spinner from '../Spinner/Spinner';
 import store from '../../store/store';
 import {useSelector} from 'react-redux';
 
-const DELAY_BEFORE_USING_LIST = 1000;
+const DELAY_BEFORE_USING_LIST = 1500; // becuase of the performance reasons, to avoid lack of responsivness
 export default ({navigation, route: {params}, ...restProps}) => {
   // the list takes input data either from route.params and if it is empty then from data param
   const data = (params && params.data) || restProps.data;
@@ -58,7 +58,7 @@ export default ({navigation, route: {params}, ...restProps}) => {
       accessoryRight={props => renderRightPart(props, item)}
       onPress={() => {
         restProps && restProps.onPress && restProps.onPress(item);
-        navigation.navigate('DayDetails', {url: item.url});
+        navigation.navigate('DayDetails', {item});
       }}
     />
   );

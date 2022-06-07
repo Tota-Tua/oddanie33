@@ -1,6 +1,6 @@
 export default [
   {
-    title: '33 dni',
+    title: 'Oddanie 33',
     subtitle: 'Wersja ogólna',
     illustration: 'slide1',
     urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
@@ -156,8 +156,8 @@ export default [
     ],
   },
   {
-    title: '33 dni dla młodych',
-    subtitle: 'Treści stworzone pod kątem młodych',
+    title: 'Oddanie 33',
+    subtitle: 'Dla młodych',
     urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
     illustration: 'slide2',
     data: [
@@ -304,8 +304,8 @@ export default [
     ],
   },
   {
-    title: 'Dla kapłanów',
-    subtitle: '',
+    title: 'Oddanie 33',
+    subtitle: 'Dla kapłanów',
     urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
     illustration: 'slide3',
     data: [
