@@ -1,10 +1,11 @@
 import React, {useRef, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {connect} from 'react-redux';
-import {Icon, TopNavigation} from '@ui-kitten/components';
+import {connect, useDispatch} from 'react-redux';
+import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
 import List from '../List/List';
-import store from '../../store/store';
+import {FavoritesModal} from './Modal';
 import {remove, updateRetreatList} from '../../store/reducers/favorites';
+import store from '../../store/store';
 
 function mapStateToProp(state) {
   const {favorites} = state;
@@ -16,10 +17,12 @@ function mapStateToProp(state) {
 const TrashIcon = ({style, item}) => {
   const icon = useRef();
   const [selected, setSelected] = useState(false);
-  const handleOnPress = params => {
+  const dispatch = useDispatch();
+
+  const handleOnPress = () => {
     setSelected(oldVal => !oldVal);
-    store.dispatch(remove(item));
-    store.dispatch(updateRetreatList());
+    dispatch(remove(item));
+    dispatch(updateRetreatList());
   };
 
   return (
@@ -36,9 +39,41 @@ const TrashIcon = ({style, item}) => {
 };
 
 const Favorites = params => {
+  const [isProgressModalVisibile, setProgressModalVisibility] = useState(false);
+
+  const MasterTrashIcon = props => {
+    function handleOnPress() {
+      if (store.getState().favorites.items.length > 0) {
+        setProgressModalVisibility(true);
+      }
+    }
+
+    return (
+      <Icon
+        onPress={() => handleOnPress()}
+        {...props}
+        name="trash-2-outline"
+        animation={true}
+      />
+    );
+  };
+
+  const MasterTrash = () => {
+    return <TopNavigationAction icon={MasterTrashIcon} />;
+  };
+
   return (
     <View style={styles.container}>
-      <TopNavigation alignment="center" title="Ulubione" />
+      <TopNavigation
+        alignment="center"
+        title="Ulubione"
+        accessoryRight={MasterTrash}
+      />
+      <FavoritesModal
+        visible={isProgressModalVisibile}
+        setVisibility={setProgressModalVisibility}
+        onBackdropPress={() => setProgressModalVisibility(false)}
+      />
       <List {...params} icon={TrashIcon} />
     </View>
   );

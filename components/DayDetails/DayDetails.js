@@ -9,18 +9,21 @@ import {
   TopNavigation,
   TopNavigationAction,
 } from '@ui-kitten/components';
-import Spinner from '../Spinner/Spinner';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import Orientation from 'react-native-orientation-locker';
-import store from '../../store/store';
-import {add, remove} from '../../store/reducers/completed';
 import {useDispatch} from 'react-redux';
-
-const BackIcon = props => <Icon {...props} name="arrow-back" />;
-
-const BackAction = (navigation, props) => (
-  <TopNavigationAction icon={BackIcon} onPressIn={() => navigation.goBack()} />
-);
+import {TouchableOpacity} from 'react-native';
+import Orientation from 'react-native-orientation-locker';
+import Spinner from '../Spinner/Spinner';
+import store from '../../store/store';
+import {
+  add as addCompleted,
+  remove as removeCompleted,
+} from '../../store/reducers/completed';
+import {
+  remove as removeFavorite,
+  save as saveFavorite,
+  updateRetreatList,
+} from '../../store/reducers/favorites';
+import {styles} from './DayDetails.styles';
 
 function isCompleted(url) {
   const completed = store.getState().completed;
@@ -34,17 +37,20 @@ const DayDetails = ({navigation, route: {params}}) => {
     '["nav", "footer", ".nav"].forEach(el => document.querySelector(el).remove());';
 
   const [isFetching, setFetching] = useState(false);
-  const [isDone, setIsDone] = useState(isCompleted(params.url));
+  const [isDone, setIsDone] = useState(isCompleted(params.item.url));
   const isMountedRef = useRef(false);
   const dispatch = useDispatch();
+
   useEffect(() => {
     //avoiding first execution
     if (isMountedRef.current) {
-      const action = isDone ? add : remove;
-      dispatch(action(params.url));
+      const action = isDone ? addCompleted : removeCompleted;
+      dispatch(action(params.item.url));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDone]);
+
+  useEffect(() => setFetching(true), [params.item.url]);
 
   useEffect(() => {
     Orientation.unlockAllOrientations();
@@ -56,20 +62,14 @@ const DayDetails = ({navigation, route: {params}}) => {
     };
   }, []);
 
-  useEffect(() => setFetching(true), [params.url]);
-
   return (
     <Layout style={styles.container}>
-      <TopNavigation
-        alignment="center"
-        accessoryLeft={BackAction.bind(undefined, navigation)}
-        title="Opis rekolekcji"
-      />
+      <ThisTopNavigation item={params.item} navigation={navigation} />
       <TouchableOpacity
         style={styles.passedField}
         activeOpacity={1.0}
         onPress={() => setIsDone(prevVal => !prevVal)}>
-        <Text>Zaznacz jako przerobione</Text>
+        <Text>Zaznacz jako przemodlone</Text>
         <CheckBox
           onChange={() => setIsDone(prevVal => !prevVal)}
           checked={isDone}
@@ -77,10 +77,11 @@ const DayDetails = ({navigation, route: {params}}) => {
         />
       </TouchableOpacity>
       <Divider />
+
       <WebView
         style={styles.webView}
         originWhitelist={[]}
-        source={{uri: params.url}}
+        source={{uri: params.item.url}}
         injectedJavaScript={injectedJSCode}
         onLoadEnd={() =>
           setTimeout(() => {
@@ -94,22 +95,69 @@ const DayDetails = ({navigation, route: {params}}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  passedField: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
-  },
-  webView: {
-    width: '100%',
-    height: '100%',
-    zIndex: 1,
-    elevation: 1,
-  },
-});
+const ThisTopNavigation = props => {
+  const item = props.item;
+  function isFavorite(currItem) {
+    const favorites = store.getState().favorites;
+    return favorites.items.some(
+      refItem => JSON.stringify(refItem) === JSON.stringify(currItem),
+    );
+  }
+
+  const BackIcon = myProps => <Icon {...myProps} name="arrow-back" />;
+  const BackAction = () => (
+    <TopNavigationAction
+      icon={BackIcon}
+      onPressIn={() => props.navigation.goBack()}
+    />
+  );
+
+  const dispatch = useDispatch();
+  const [selected, setSelected] = useState(isFavorite(item));
+  const [isDispatchBlocked, setDispatchBlocked] = useState(true);
+  const SettingsAction = () => {
+    const HeartIcon = heartProps => {
+      useEffect(() => {
+        if (!isDispatchBlocked) {
+          const action = selected ? saveFavorite : removeFavorite;
+          dispatch(action(item));
+          dispatch(updateRetreatList());
+        } else {
+          setDispatchBlocked(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [selected]);
+
+      return (
+        <Icon
+          {...heartProps}
+          name="heart"
+          {...(selected ? {fill: '#FF0000'} : {})}
+        />
+      );
+    };
+
+    return (
+      <TopNavigationAction
+        icon={HeartIcon}
+        onPressIn={() => {
+          setSelected(oldVal => {
+            setDispatchBlocked(false);
+            return !oldVal;
+          });
+        }}
+      />
+    );
+  };
+
+  return (
+    <TopNavigation
+      alignment="center"
+      accessoryLeft={BackAction}
+      accessoryRight={SettingsAction}
+      title="Opis rekolekcji"
+    />
+  );
+};
 
 export default DayDetails;

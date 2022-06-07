@@ -15,7 +15,8 @@ import {
 } from '@ui-kitten/components';
 import store from '../../store/store';
 import {setDarkMode} from '../../store/reducers/settings';
-import {removeAll} from '../../store/reducers/completed';
+import {removeAll as removeAllCompleted} from '../../store/reducers/completed';
+import {removeAll as removeAllFavorites} from '../../store/reducers/favorites';
 
 const BackIcon = props => <Icon {...props} name="arrow-back" />;
 const BackAction = (navigation, props) => (
@@ -44,7 +45,8 @@ const Settings = ({navigation}) => {
       <Button
         onPress={() => {
           setProgressModalVisibility(false);
-          dispatch(removeAll());
+          dispatch(removeAllCompleted());
+          dispatch(removeAllFavorites());
         }}>
         Tak
       </Button>
@@ -86,7 +88,7 @@ const Settings = ({navigation}) => {
         activeOpacity={1.0}
         onPress={() => setProgressModalVisibility(true)}>
         <Text category="p1" appearance="hint">
-          Usuń postęp
+          Usuń dane (ulubione, przemodlone)
         </Text>
       </TouchableOpacity>
       <Divider />
