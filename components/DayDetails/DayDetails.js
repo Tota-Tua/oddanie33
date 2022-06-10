@@ -122,7 +122,6 @@ const ThisTopNavigation = props => {
           const action = selected ? saveFavorite : removeFavorite;
           dispatch(action(item));
           dispatch(updateRetreatList());
-        } else {
           setDispatchBlocked(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
