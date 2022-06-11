@@ -50,17 +50,28 @@ const BackAction = (navigation, props) => (
   <TopNavigationAction icon={BackIcon} onPressIn={() => navigation.goBack()} />
 );
 
+const DEFAULT_TOP_NAVIGATION_HEIGHT = 56;
 const RetreatList = params => {
   useSelector(state => state.favorites.updateRetreatList);
+  const [topNavigationOffset, setTopNavigationOffset] = useState(
+    DEFAULT_TOP_NAVIGATION_HEIGHT,
+  );
 
   return (
     <View style={styles.container}>
       <TopNavigation
+        onLayout={event =>
+          setTopNavigationOffset(event.nativeEvent.layout.height)
+        }
         alignment="center"
         accessoryLeft={BackAction.bind(undefined, params.navigation)}
         title="Wybierz dzień rekolekcji"
       />
-      <List {...params} icon={HeartIcon} />
+      <List
+        {...params}
+        icon={HeartIcon}
+        spinnerViewStyle={{top: topNavigationOffset}}
+      />
     </View>
   );
 };
