@@ -24,3 +24,9 @@ x wait until the code is built and uploaded onto a smartphone
 IOS
 ---------
 Have not tested yet
+
+How to generate APK ?
+------------------------
+x go to `android` dir
+x enter `./gradlew assembleDebug`
+apk will be located in android\oddanie33\android\app\build\outputs\apk\debug

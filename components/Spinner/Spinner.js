@@ -2,20 +2,20 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Spinner} from '@ui-kitten/components';
 
-export default ({visability}) => {
+export default ({visability, style}) => {
   if (visability === undefined) {
     visability = true;
   }
   return (
     visability && (
-      <View style={styles.spinnerContainer}>
+      <View style={[ownStyles.spinnerContainer, style]}>
         <Spinner size="giant" status="success" />
       </View>
     )
   );
 };
 
-const styles = StyleSheet.create({
+const ownStyles = StyleSheet.create({
   spinnerContainer: {
     position: 'absolute',
     flex: 1,

@@ -92,7 +92,7 @@ export default ({navigation, route: {params}, ...restProps}) => {
         ListEmptyComponent={renderEmptyList}
         ItemSeparatorComponent={Divider}
       />
-      <Spinner visability={isFetching} />
+      <Spinner visability={isFetching} style={restProps.spinnerViewStyle} />
     </>
   );
 };
