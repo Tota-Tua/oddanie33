@@ -14,6 +14,21 @@ export default class SliderEntry extends Component {
     navigation: PropTypes.object,
   };
 
+  constructor() {
+    super();
+    this._isNavigationEnabled = true;
+  }
+
+  componentDidMount() {
+    this._unsubscribeFocus = this.props.navigation.addListener('focus', () => {
+      this._isNavigationEnabled = true;
+    });
+  }
+
+  componentWillUnmount() {
+    this._unsubscribeFocus();
+  }
+
   get image() {
     const picName = this.props.data.illustration;
     const curImg = images[picName];
@@ -57,9 +72,13 @@ export default class SliderEntry extends Component {
       <TouchableOpacity
         activeOpacity={1}
         style={styles.slideInnerContainer}
-        onPress={() =>
-          this.props.navigation.push('RetreatList', this.props.data)
-        }>
+        onPress={() => {
+          // the below code prevents from creation of the multiple instances of the next screen
+          if (this._isNavigationEnabled) {
+            this.props.navigation.push('RetreatList', this.props.data);
+            this._isNavigationEnabled = false;
+          }
+        }}>
         <View style={styles.shadow} />
         <View
           style={[

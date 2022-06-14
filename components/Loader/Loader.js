@@ -17,6 +17,7 @@ export default ({onFinished}) => {
         }).start(() => onFinished()),
       DELAY_TIME,
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
