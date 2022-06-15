@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useDispatch} from 'react-redux';
+import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
   Button,
@@ -17,6 +17,7 @@ import store from '../../store/store';
 import {setDarkMode} from '../../store/reducers/settings';
 import {removeAll as removeAllCompleted} from '../../store/reducers/completed';
 import {removeAll as removeAllFavorites} from '../../store/reducers/favorites';
+import {setInitialValues as setInitialSettings} from '../../store/reducers/settings';
 
 const BackIcon = props => <Icon {...props} name="arrow-back" />;
 const BackAction = (navigation, props) => (
@@ -24,21 +25,10 @@ const BackAction = (navigation, props) => (
 );
 const Settings = ({navigation}) => {
   const darkMode = store.getState().settings.darkMode;
-  const [nightMode, setNightMode] = useState(darkMode);
   const [isProgressModalVisibile, setProgressModalVisibility] =
     React.useState(false);
-  const notMounted = useRef(true);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    // avoid processing during the first render
-    if (notMounted.current) {
-      notMounted.current = false;
-      return;
-    }
-    dispatch(setDarkMode(nightMode));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nightMode]);
+  useSelector(state => state.settings.darkMode);
 
   const CardFooter = props => (
     <View {...props} style={[props.style, styles.buttons]}>
@@ -47,6 +37,7 @@ const Settings = ({navigation}) => {
           setProgressModalVisibility(false);
           dispatch(removeAllCompleted());
           dispatch(removeAllFavorites());
+          dispatch(setInitialSettings());
         }}>
         Tak
       </Button>
@@ -73,13 +64,13 @@ const Settings = ({navigation}) => {
       <TouchableOpacity
         style={styles.item}
         activeOpacity={1.0}
-        onPress={() => setNightMode(oldMode => !oldMode)}>
+        onPress={() => dispatch(setDarkMode(!darkMode))}>
         <Text category="p1" appearance="hint">
           Włącz tryb nocny
         </Text>
         <Toggle
-          checked={nightMode}
-          onChange={() => setNightMode(oldMode => !oldMode)}
+          checked={darkMode}
+          onChange={() => dispatch(setDarkMode(!darkMode))}
         />
       </TouchableOpacity>
       <Divider />
@@ -88,7 +79,7 @@ const Settings = ({navigation}) => {
         activeOpacity={1.0}
         onPress={() => setProgressModalVisibility(true)}>
         <Text category="p1" appearance="hint">
-          Usuń dane (ulubione, przemodlone)
+          Wyczyść dane (ulubione, przemodlone, ustawienia)
         </Text>
       </TouchableOpacity>
       <Divider />

@@ -26,6 +26,7 @@ export default StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    paddingTop: 10,
   },
   slider: {
     marginTop: 15,

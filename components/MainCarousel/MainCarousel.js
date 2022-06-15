@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
+import {useSelector} from 'react-redux';
 import {/*Text, */ View} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
@@ -6,12 +7,13 @@ import styles from './MainCarousel.styles';
 import SliderEntry from './components/SliderEntry';
 import {sliderWidth, itemWidth} from './components/SliderEntry.style';
 import carouselData from '../../utils/parseRetreatData';
-
-const FIRST_ACTIVE_SLIDE = 1;
+import store from '../../store/store';
+import {setSelectedMainSliderItem} from '../../store/reducers/settings';
 
 const MainCarousel = ({navigation}) => {
-  const [activeSlide, updateActiveSlide] = useState(FIRST_ACTIVE_SLIDE);
-  let slider = useRef();
+  const currMainSliderSlide = store.getState().settings.selectedMainSliderSlide;
+  const slider = useRef();
+  useSelector(state => state.settings.selectedMainSliderSlide);
 
   function _renderItemWithParallax({item, index}, parallaxProps) {
     return (
@@ -38,18 +40,21 @@ const MainCarousel = ({navigation}) => {
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
         hasParallaxImages={true}
-        firstItem={activeSlide}
+        currentIndex={currMainSliderSlide}
+        firstItem={currMainSliderSlide}
         inactiveSlideScale={0.94}
         inactiveSlideOpacity={0.7}
         inactiveSlideShift={20}
         enableMomentum={true}
         containerCustomStyle={styles.slider}
         contentContainerCustomStyle={styles.sliderContentContainer}
-        onSnapToItem={index => updateActiveSlide(index)}
+        onSnapToItem={index => {
+          store.dispatch(setSelectedMainSliderItem(index));
+        }}
       />
       <Pagination
         dotsLength={carouselData.length}
-        activeDotIndex={activeSlide}
+        activeDotIndex={currMainSliderSlide}
         containerStyle={styles.paginationContainer}
         dotColor={'rgba(255, 255, 255, 0.92)'}
         dotStyle={styles.paginationDot}
