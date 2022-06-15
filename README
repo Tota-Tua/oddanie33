@@ -30,3 +30,8 @@ How to generate APK ?
 x go to `android` dir
 x enter `./gradlew assembleDebug`
 apk will be located in android\oddanie33\android\app\build\outputs\apk\debug
+
+How to remove an app using adb ?
+----------------------------------
+adb uninstall `package-name`
+package name can be found in oddanie33\android\app\src\main\AndroidManifest.xml

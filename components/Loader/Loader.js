@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   stImage: {
-    flex: 1.5,
+    flex: 1.3,
     justifyContent: 'flex-end',
   },
   ndImage: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 50,
     justifyContent: 'flex-start',
   },
   pictures: {
