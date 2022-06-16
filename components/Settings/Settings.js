@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
@@ -25,8 +25,8 @@ const BackAction = (navigation, props) => (
 );
 const Settings = ({navigation}) => {
   const darkMode = store.getState().settings.darkMode;
-  const [isProgressModalVisibile, setProgressModalVisibility] =
-    React.useState(false);
+  const [isProgressModalVisibile, setProgressModalVisibility] = useState(false);
+  const [isNotReadyModalVisible, setNotReadyModalVisibility] = useState(false);
   const dispatch = useDispatch();
   useSelector(state => state.settings.darkMode);
 
@@ -47,50 +47,81 @@ const Settings = ({navigation}) => {
 
   return (
     <Layout style={styles.container}>
-      <TopNavigation
-        accessoryLeft={BackAction.bind(undefined, navigation)}
-        title="Ustawienia"
-        alignment="center"
-      />
       <Modal
-        visible={isProgressModalVisibile}
+        visible={isNotReadyModalVisible}
         backdropStyle={styles.backdrop}
-        onBackdropPress={() => setProgressModalVisibility(false)}>
-        <Card disabled={true} footer={CardFooter}>
-          <Text> Skasować postęp ? </Text>
+        onBackdropPress={() => setNotReadyModalVisibility(false)}>
+        <Card disabled={true}>
+          <Text> Brak implementacji </Text>
         </Card>
       </Modal>
-      <Divider />
-      <TouchableOpacity
-        style={styles.item}
-        activeOpacity={1.0}
-        onPress={() => dispatch(setDarkMode(!darkMode))}>
-        <Text category="p1" appearance="hint">
-          Włącz tryb nocny
-        </Text>
-        <Toggle
-          checked={darkMode}
-          onChange={() => dispatch(setDarkMode(!darkMode))}
+      <Layout>
+        <TopNavigation
+          accessoryLeft={BackAction.bind(undefined, navigation)}
+          title="Ustawienia"
+          alignment="center"
         />
-      </TouchableOpacity>
-      <Divider />
-      <TouchableOpacity
-        style={styles.item}
-        activeOpacity={1.0}
-        onPress={() => setProgressModalVisibility(true)}>
-        <Text category="p1" appearance="hint">
-          Wyczyść dane (ulubione, przemodlone, ustawienia)
-        </Text>
-      </TouchableOpacity>
-      <Divider />
-      <TouchableOpacity
-        style={[styles.item, styles.version]}
-        activeOpacity={1.0}>
-        <Text category="p2" appearance="hint">
-          Wersja oprogramowania TESTOWA
-        </Text>
-      </TouchableOpacity>
-      <Divider />
+        <Modal
+          visible={isProgressModalVisibile}
+          backdropStyle={styles.backdrop}
+          onBackdropPress={() => setProgressModalVisibility(false)}>
+          <Card disabled={true} footer={CardFooter}>
+            <Text> Skasować postęp ? </Text>
+          </Card>
+        </Modal>
+        <Divider />
+        <TouchableOpacity
+          style={styles.item}
+          activeOpacity={1.0}
+          onPress={() => dispatch(setDarkMode(!darkMode))}>
+          <Text category="p1" appearance="hint">
+            Włącz tryb nocny
+          </Text>
+          <Toggle
+            checked={darkMode}
+            onChange={() => dispatch(setDarkMode(!darkMode))}
+          />
+        </TouchableOpacity>
+        <Divider />
+        <TouchableOpacity
+          style={styles.item}
+          activeOpacity={1.0}
+          onPress={() => setProgressModalVisibility(true)}>
+          <Text category="p1" appearance="hint">
+            Wyczyść dane (ulubione, przemodlone, ustawienia)
+          </Text>
+        </TouchableOpacity>
+        <Divider />
+        <TouchableOpacity
+          style={styles.item}
+          activeOpacity={1.0}
+          onPress={() => setNotReadyModalVisibility(true)}>
+          <Text category="p1" appearance="hint">
+            Kontakt
+          </Text>
+        </TouchableOpacity>
+        <Divider />
+        <TouchableOpacity
+          style={styles.item}
+          activeOpacity={1.0}
+          onPress={() => setNotReadyModalVisibility(true)}>
+          <Text category="p1" appearance="hint">
+            Poleć znajomym
+          </Text>
+        </TouchableOpacity>
+        <Divider />
+      </Layout>
+      <Layout>
+        <Divider />
+        <TouchableOpacity
+          style={[styles.item, styles.version]}
+          activeOpacity={1.0}>
+          <Text category="p2" appearance="hint">
+            Wersja oprogramowania: TESTOWA
+          </Text>
+        </TouchableOpacity>
+        <Divider />
+      </Layout>
     </Layout>
   );
 };
@@ -98,6 +129,7 @@ const Settings = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
   },
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -113,7 +145,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   version: {
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
 });
 
