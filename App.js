@@ -9,6 +9,7 @@ import MyNavigationContainer from './components/Navigation/BottomNavigation';
 import store from './store/store';
 import Orientation from 'react-native-orientation-locker';
 import Loader from './components/Loader/Loader';
+import NetworkInfoObj from './services/NetworkInfo'; // eslint-disable-line no-unused-vars
 
 const getModeStrRepresent = mode => (mode ? 'dark' : 'light');
 const ApplicationProviderWrappper = () => {
