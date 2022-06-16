@@ -66,7 +66,7 @@ const Settings = ({navigation}) => {
           backdropStyle={styles.backdrop}
           onBackdropPress={() => setProgressModalVisibility(false)}>
           <Card disabled={true} footer={CardFooter}>
-            <Text> Skasować postęp ? </Text>
+            <Text> Skasować dane ? </Text>
           </Card>
         </Modal>
         <Divider />
