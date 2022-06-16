@@ -33,6 +33,7 @@ const Settings = ({navigation}) => {
   const CardFooter = props => (
     <View {...props} style={[props.style, styles.buttons]}>
       <Button
+        style={styles.cardProgressBtn}
         onPress={() => {
           setProgressModalVisibility(false);
           dispatch(removeAllCompleted());
@@ -41,7 +42,11 @@ const Settings = ({navigation}) => {
         }}>
         Tak
       </Button>
-      <Button onPress={() => setProgressModalVisibility(false)}>Nie</Button>
+      <Button
+        style={styles.cardProgressBtn}
+        onPress={() => setProgressModalVisibility(false)}>
+        Nie
+      </Button>
     </View>
   );
 
@@ -65,8 +70,11 @@ const Settings = ({navigation}) => {
           visible={isProgressModalVisibile}
           backdropStyle={styles.backdrop}
           onBackdropPress={() => setProgressModalVisibility(false)}>
-          <Card disabled={true} footer={CardFooter}>
-            <Text> Skasować dane ? </Text>
+          <Card
+            disabled={true}
+            footer={CardFooter}
+            style={styles.cardProgressModal}>
+            <Text>Skasować dane ?</Text>
           </Card>
         </Modal>
         <Divider />
@@ -137,6 +145,14 @@ const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  cardProgressBtn: {
+    margin: 5,
+  },
+  cardProgressModal: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     flexDirection: 'row',
