@@ -1,8 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
-import WebView from 'react-native-webview';
 import {CheckBox, Divider, Layout, Text} from '@ui-kitten/components';
 import {useDispatch} from 'react-redux';
-import {TouchableOpacity} from 'react-native';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
 import Orientation from 'react-native-orientation-locker';
 import Spinner from '../Spinner/Spinner';
 import store from '../../store/store';
@@ -13,21 +12,22 @@ import {
 import {styles} from './DayDetails.styles';
 import ThisTopNavigation from './TopNavigation';
 import ErrorPage from './ErrorPage';
+import RenderHtml from 'react-native-render-html';
+import { useWindowDimensions } from 'react-native';
 
 function isCompleted(url) {
   const completed = store.getState().completed;
   return completed.list.some(refItemURL => refItemURL === url);
 }
 
-const DELAY_BEFORE_USING_WEBVIEW = 1000;
 const DEFAULT_TOP_NAVIGATION_HEIGHT = 56;
 // to prevent from unwanted navigation
-const injectedJSCode =
-  '["nav", "footer", ".nav"].forEach(el => document.querySelector(el).remove());';
 import NetworkInfoObj from '../../services/NetworkInfo';
+import { setDarkMode } from '../../store/reducers/settings';
 
 const DayDetails = ({navigation, route: {params}}) => {
-  const [isFetching, setFetching] = useState(false);
+  const [isFetching, setFetching] = useState(true);
+  const [fetchedData, setFetchedData] = useState();
   const [isDone, setIsDone] = useState(isCompleted(params.item.url));
   const [topNavigationOffset, setTopNavigationOffset] = useState(
     DEFAULT_TOP_NAVIGATION_HEIGHT,
@@ -48,12 +48,28 @@ const DayDetails = ({navigation, route: {params}}) => {
     Orientation.unlockAllOrientations();
     isMountedRef.current = true;
 
+    fetch(params.item.url)
+    .then(response => response.json())
+    .then(result => {
+      // remove  mistakes
+      let html = result.content
+      .replace(/\r\n/g, "")
+      .replace(/<p style="text-align:justify">&nbsp;<\/p>/g, "");
+
+      setFetchedData(html);
+      setFetching(false);
+    })
+    .catch(error => {
+      setFetching(false);
+    });
+
     return () => {
       Orientation.lockToPortrait();
       isMountedRef.current = false;
     };
   }, []);
 
+  const { width } = useWindowDimensions();
   return (
     <Layout style={styles.container}>
       <ThisTopNavigation
@@ -77,21 +93,12 @@ const DayDetails = ({navigation, route: {params}}) => {
       <Divider />
 
       {NetworkInfoObj.isConnected ? (
-        <WebView
-          style={styles.webView}
-          originWhitelist={[]}
-          source={{
-            uri: params.item.url,
-          }}
-          injectedJavaScript={injectedJSCode}
-          onLoadStart={() => setFetching(true)}
-          onLoadEnd={() =>
-            setTimeout(() => {
-              isMountedRef.current && setFetching(false);
-            }, DELAY_BEFORE_USING_WEBVIEW)
-          }
-          allowsFullscreenVideo={true} // does not work yet correctly with rotation */
-        />
+        <ScrollView style={{ flex: 1,}}>
+          {fetchedData ? (<View style={{marginHorizontal: 5}}><RenderHtml
+              contentWidth={width}
+              source={{html: fetchedData}}
+            /></View>) : undefined}
+        </ScrollView>
       ) : (
         <ErrorPage navigation={navigation} />
       )}
