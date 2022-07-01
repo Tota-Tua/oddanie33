@@ -3,7 +3,7 @@ export default [
     title: 'Oddanie 33',
     subtitle: 'Wersja ogólna',
     illustration: 'slide1',
-    urlPattern: 'https://oddanie33.pl/dzien-${number}/tekst',
+    urlPattern: 'https://oddanie33.pl/api/page/code-dzien-${number}',
     data: [
       {
         title: '„BÓG POSŁAŁ ANIOŁA” (Łk 1,26)',
@@ -158,7 +158,7 @@ export default [
   {
     title: 'Oddanie 33',
     subtitle: 'Dla młodych',
-    urlPattern: 'https://oddanie33.pl/mlodzi-dzien-${number}',
+    urlPattern: 'https://oddanie33.pl/api/page/code-dzien-${number}',
     illustration: 'slide2',
     data: [
       {
@@ -306,7 +306,7 @@ export default [
   {
     title: 'Oddanie 33',
     subtitle: 'Dla kapłanów',
-    urlPattern: 'https://oddanie33.pl/dla-kaplanow-dzien-${number}',
+    urlPattern: 'https://oddanie33.pl/api/page/code-dzien-${number}',
     illustration: 'slide3',
     data: [
       {
